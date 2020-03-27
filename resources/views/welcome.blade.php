@@ -81,7 +81,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Te amo muchote Kimberlin Yazuri Salguero España
+                    No mas aqui valiendo XD. Saludos.
                 </div>
 
                 <div class="links">
