@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "430d719423252110bd7a602f86c5dd48",
+    "content-hash": "7ff0454d8e55c7b484169474d0004923",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -3559,6 +3559,67 @@
     ],
     "packages-dev": [
         {
+            "name": "appzcoder/crud-generator",
+            "version": "v3.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/appzcoder/crud-generator.git",
+                "reference": "c4913e06387e4106ddee6f3323d6186aec0f1fc0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/appzcoder/crud-generator/zipball/c4913e06387e4106ddee6f3323d6186aec0f1fc0",
+                "reference": "c4913e06387e4106ddee6f3323d6186aec0f1fc0",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^5.3|^6.0|^7.0",
+                "laravelcollective/html": "^5.3|^6.0|^7.0",
+                "php": ">=5.6.4|>=7.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^3.3|^4.0|^5.0",
+                "phpunit/phpunit": "^5.7|^8.0|^9.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Appzcoder\\CrudGenerator\\CrudGeneratorServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Appzcoder\\CrudGenerator\\": "src/"
+                },
+                "classmap": [
+                    "tests"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Sohel Amin",
+                    "email": "sohelamincse@gmail.com",
+                    "homepage": "http://www.appzcoder.com"
+                }
+            ],
+            "description": "Laravel CRUD Generator",
+            "keywords": [
+                "API generator",
+                "crud",
+                "crud generator",
+                "laravel",
+                "laravel crud generator"
+            ],
+            "time": "2020-03-04T19:26:24+00:00"
+        },
+        {
             "name": "doctrine/instantiator",
             "version": "1.3.0",
             "source": {
@@ -3941,6 +4002,74 @@
                 "test"
             ],
             "time": "2016-01-20T08:20:44+00:00"
+        },
+        {
+            "name": "laravelcollective/html",
+            "version": "v6.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/LaravelCollective/html.git",
+                "reference": "64f2268bf41bf02b3a9dd3c30f102e934d721664"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/LaravelCollective/html/zipball/64f2268bf41bf02b3a9dd3c30f102e934d721664",
+                "reference": "64f2268bf41bf02b3a9dd3c30f102e934d721664",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "^6.0|^7.0",
+                "illuminate/routing": "^6.0|^7.0",
+                "illuminate/session": "^6.0|^7.0",
+                "illuminate/support": "^6.0|^7.0",
+                "illuminate/view": "^6.0|^7.0",
+                "php": ">=7.2.5"
+            },
+            "require-dev": {
+                "illuminate/database": "^6.0|^7.0",
+                "mockery/mockery": "~1.0",
+                "phpunit/phpunit": "~7.1"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.0-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Collective\\Html\\HtmlServiceProvider"
+                    ],
+                    "aliases": {
+                        "Form": "Collective\\Html\\FormFacade",
+                        "Html": "Collective\\Html\\HtmlFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                },
+                "files": [
+                    "src/helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                },
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "description": "HTML and Form Builders for the Laravel Framework",
+            "homepage": "https://laravelcollective.com",
+            "time": "2020-03-02T16:41:28+00:00"
         },
         {
             "name": "mockery/mockery",
@@ -5557,5 +5686,6 @@
     "platform": {
         "php": "^7.4.4"
     },
-    "platform-dev": []
+    "platform-dev": [],
+    "plugin-api-version": "1.1.0"
 }
