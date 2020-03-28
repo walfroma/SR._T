@@ -15,24 +15,28 @@ class CreateUsuariosTable extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('users_id')->unsigned();
             $table->string('Nombre', 45)->nullable();
             $table->string('Apellido', 45)->nullable();
             $table->string('Telefono', 45)->nullable();
             $table->string('Direccion', 100)->nullable();
-            $table->string('Correo', 100);
-            $table->string('Contraseña', 45);
-            $table->string('V_Contraseña', 45);
-            $table->integer('lugars_id')->unsigned();
             $table->string('Tipo_Usuario', 45)->nullable();
+            $table->integer('lugars_id')->unsigned();
             $table->timestamps();
 
-            $table->index(["lugars_id"], 'fk_usuarios_lugars_idx');
 
 
-            $table->foreign('lugars_id', 'fk_usuarios_lugars_idx')
-                ->references('id')->on('lugars')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+
+            $table->foreign('lugars_id')->references('id')->on('lugars')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('users_id')->references('id')->on('users')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+
+
         });
     }
 

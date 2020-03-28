@@ -44,7 +44,8 @@ class LugarController extends Controller
         $datosLugar=request()->except('_token');
         Lugar::insert($datosLugar);
 
-        return response()->json($datosLugar);
+        //return response()->json($datosLugar);
+        return redirect('Lugar')->with('Mensaje','Lugar agregado con Exito');
     }
 
     /**
@@ -85,8 +86,9 @@ class LugarController extends Controller
         $datosLugar=request()->except(['_token','_method']);
         Lugar::where('id','=',$id)->update($datosLugar);
 
-        $Lugar = Lugar::findOrFail($id);
-        return view('Lugar.edit',compact('Lugar'));
+        //$Lugar = Lugar::findOrFail($id);
+        //return view('Lugar.edit',compact('Lugar'));
+        return redirect('Lugar')->with('Mensaje','Lugar modificado con Exito');
     }
 
     /**
@@ -99,6 +101,7 @@ class LugarController extends Controller
     {
         //
         Lugar::destroy($id);
-        return redirect('Lugar');
+        //return redirect('Lugar');
+        return redirect('Lugar')->with('Mensaje','Lugar eliminado con Exito');
     }
 }

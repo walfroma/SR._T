@@ -1,4 +1,11 @@
 
+
+@if(Session::has('Mensaje')){{
+    Session::get('Mensaje')
+}}
+@endif
+
+<a href=" {{ url('Lugar/create') }}">Agregar Lugar</a>
 <table class="table table-light">
 
     <thead class="thead-light">

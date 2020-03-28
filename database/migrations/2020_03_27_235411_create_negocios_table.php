@@ -23,13 +23,13 @@ class CreateNegociosTable extends Migration
             $table->integer('usuarios_id')->unsigned();
             $table->timestamps();
 
-            $table->index(["usuarios_id"], 'fk_negocios_usuarios_idx');
 
 
-            $table->foreign('usuarios_id', 'fk_negocios_usuarios_idx')
-                ->references('id')->on('usuarios')
+
+            $table->foreign('usuarios_id')->references('id')->on('usuarios')
                 ->onDelete('no action')
                 ->onUpdate('no action');
+
         });
     }
 
