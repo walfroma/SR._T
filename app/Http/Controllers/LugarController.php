@@ -82,7 +82,7 @@ class LugarController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $datosLugar=request()->except(['_token', '_method']);
+        $datosLugar=request()->except(['_token','_method']);
         Lugar::where('id','=',$id)->update($datosLugar);
 
         $Lugar = Lugar::findOrFail($id);

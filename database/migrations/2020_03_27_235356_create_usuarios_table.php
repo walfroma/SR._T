@@ -24,6 +24,7 @@ class CreateUsuariosTable extends Migration
             $table->string('V_Contraseña', 45);
             $table->integer('lugars_id')->unsigned();
             $table->string('Tipo_Usuario', 45)->nullable();
+            $table->timestamps();
 
             $table->index(["lugars_id"], 'fk_usuarios_lugars_idx');
 

@@ -21,6 +21,7 @@ class CreateNegociosTable extends Migration
             $table->string('Ubicacion', 200)->nullable();
             $table->string('Correo', 100)->nullable();
             $table->integer('usuarios_id')->unsigned();
+            $table->timestamps();
 
             $table->index(["usuarios_id"], 'fk_negocios_usuarios_idx');
 

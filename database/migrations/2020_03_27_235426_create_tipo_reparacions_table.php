@@ -16,6 +16,7 @@ class CreateTipoReparacionsTable extends Migration
         Schema::create('tipo_reparacions', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Descripcion', 100)->nullable();
+            $table->timestamps();
         });
     }
 

@@ -16,6 +16,7 @@ class CreatePantallasTable extends Migration
         Schema::create('pantallas', function (Blueprint $table) {
             $table->increments('id');
             $table->string('Pantalla', 45)->nullable();
+            $table->timestamps();
         });
     }
 
