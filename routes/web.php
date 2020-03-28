@@ -17,8 +17,15 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/saludo', function () {
-    dd('Bienvenidos');
-});
+//Route::get('/Lugar', 'LugarController@index');
+//Route::get('/Lugar/create', 'LugarController@create');
+
+Route::resource('Lugar', 'LugarController');
+Route::resource('Bateria', 'BateriaController');
+Route::resource('Marca', 'MarcaController');
+Route::resource('Negocio', 'NegocioController');
+Route::resource('Pantalla', 'PantallaController');
+Route::resource('Tipo_Reparacion', 'TipoReparacionController');
+Route::resource('Usuario', 'UsuarioController');
 
 
