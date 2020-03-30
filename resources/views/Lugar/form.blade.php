@@ -5,6 +5,17 @@
 
     <div class="container">
 
+        <div class="row">
+            @include('admin.sidebar')
+
+            <div class="col-md-9">
+                <div class="card">
+                    <div class="card-header">{{ $Modo == 'crear' ? 'Agregar Lugar' : 'Modificar Lugar' }}
+                    </div>
+                    <div class="card-body">
+
+
+
         @if(count($errors)>0)
             <div class="alert alert-danger" role="alert">
                 <ul>
@@ -15,7 +26,7 @@
             </div>
         @endif
 
-{{ $Modo == 'crear' ? 'Agregar Lugar' : 'Modificar Lugar' }}
+
 
         <div class="form-group">
             <label for="Lugar" class="control-label"> {{'Lugar'}}</label>
@@ -25,10 +36,17 @@
 
         </div>
 
-
-
 <input type="submit" class="btn btn-success" value="{{ $Modo == 'crear' ? 'Agregar' : 'Editar' }}">
 
 <a class="btn btn-primary" href=" {{ url('Lugar') }}">Regrasar Lugar</a>
+    </div>
+
+
+
+
+
+                </div>
+            </div>
+        </div>
     </div>
 @endsection

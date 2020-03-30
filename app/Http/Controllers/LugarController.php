@@ -6,7 +6,7 @@ use App\Lugar;
 use Illuminate\Http\Request;
 
 //--------------------------------------
-use App\Http\Controllers\Controller;
+
 use App\Http\Requests;
 //--------------------------------------
 class LugarController extends Controller
@@ -19,9 +19,18 @@ class LugarController extends Controller
     public function index(Request $request)
     {
         //
-        $datos['Lugar'] = Lugar::paginate(1000);
+        $keyword = $request->get('search');
+        $perPage = 20;
 
-        return view('Lugar.index',$datos);
+        if (!empty($keyword)) {
+            $Lugar = Lugar::where('Lugar', 'LIKE', "%$keyword%")
+                ->orWhere('id', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $Lugar = Lugar::latest()->paginate($perPage);
+        }
+
+        return view('Lugar.index', compact('Lugar'));
     }
 
     /**
@@ -64,9 +73,13 @@ class LugarController extends Controller
      * @param  \App\Lugar  $lugar
      * @return \Illuminate\Http\Response
      */
-    public function show(Lugar $lugar)
+    public function show($id)
     {
         //
+        $Lugar = Lugar::findOrFail($id);
+
+        return view('Lugar.show', compact('Lugar'));
+
     }
 
     /**
