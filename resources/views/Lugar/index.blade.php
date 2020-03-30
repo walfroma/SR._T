@@ -1,12 +1,23 @@
 
 
-@if(Session::has('Mensaje')){{
-    Session::get('Mensaje')
-}}
+@extends('layouts.app')
+
+@section('content')
+
+    <div class="container">
+
+@if(Session::has('Mensaje'))
+    <div class="alert alert-success" role="alert">
+        {{Session::get('Mensaje')}}
+    </div>
+
 @endif
 
-<a href=" {{ url('Lugar/create') }}">Agregar Lugar</a>
-<table class="table table-light">
+<a href=" {{ url('Lugar/create') }}"  class="btn btn-success">Agregar Lugar</a>
+    <br/>
+    <br/>
+
+<table class="table table-light table-hover">
 
     <thead class="thead-light">
 
@@ -25,18 +36,22 @@
             <td>{{$Lugar->Lugar}}</td>
             <td>
 
-                <a href="{{ url('/Lugar/'.$Lugar->id.'/edit') }}">
+
+                <a class="btn btn-warning" href="{{ url('/Lugar/'.$Lugar->id.'/edit') }}">
                     Editar
                 </a>
 
 
-                |
 
-                <form method="post" action="{{ url('/Lugar/'.$Lugar->id) }}">
+
+                <form method="post" action="{{ url('/Lugar/'.$Lugar->id) }}" style="display:inline">
+
+
+                    |
 
                     {{csrf_field()}}
                     {{method_field('DELETE')}}
-                    <button type="submit" onclick="return confirm('¿Desea_Borrar_el_Dato?');">Borrar</button>
+                    <button class="btn btn-danger" type="submit" onclick="return confirm('¿Desea_Borrar_el_Dato?');">Borrar</button>
 
                 </form>
 
@@ -45,3 +60,5 @@
     @endforeach
     </tbody>
 </table>
+    </div>
+@endsection

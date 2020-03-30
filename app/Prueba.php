@@ -4,20 +4,20 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Lugar extends Model
+class Prueba extends Model
 {
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'Lugar';
+    protected $table = 'pruebas';
 
     /**
-     * The database primary key value.
-     *
-     * @var string
-     */
+    * The database primary key value.
+    *
+    * @var string
+    */
     protected $primaryKey = 'id';
 
     /**
@@ -25,5 +25,7 @@ class Lugar extends Model
      *
      * @var array
      */
-    protected $fillable = ['Lugar', 'id'];
+    protected $fillable = ['Nombre', 'id'];
+
+
 }

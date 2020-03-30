@@ -14,34 +14,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 //Route::get('/Lugar', 'LugarController@index');
 //Route::get('/Lugar/create', 'LugarController@create');
 
-Route::resource('Lugar', 'LugarController');
-Route::resource('Bateria', 'BateriaController');
-Route::resource('Marca', 'MarcaController');
-Route::resource('Negocio', 'NegocioController');
-Route::resource('Pantalla', 'PantallaController');
-Route::resource('Tipo_Reparacion', 'TipoReparacionController');
-Route::resource('Usuario', 'UsuarioController');
+Route::resource('Lugar', 'LugarController') ->middleware('auth');
+Route::resource('Bateria', 'BateriaController')/*->middleware('auth')*/;
+Route::resource('Marca', 'MarcaController')/*->middleware('auth')*/;
+Route::resource('Negocio', 'NegocioController')/*->middleware('auth')*/;
+Route::resource('Pantalla', 'PantallaController')/*->middleware('auth')*/;
+Route::resource('Tipo_Reparacion', 'TipoReparacionController')/*->middleware('auth')*/;
+Route::resource('Usuario', 'UsuarioController')/*->middleware('auth')*/;
 
 
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
+Auth::routes(/*['register'=>false]*/);
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+Route::resource('prueba', 'PruebaController');

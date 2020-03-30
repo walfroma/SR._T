@@ -5,6 +5,10 @@ namespace App\Http\Controllers;
 use App\Lugar;
 use Illuminate\Http\Request;
 
+//--------------------------------------
+use App\Http\Controllers\Controller;
+use App\Http\Requests;
+//--------------------------------------
 class LugarController extends Controller
 {
     /**
@@ -12,10 +16,10 @@ class LugarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         //
-        $datos['Lugar'] = Lugar::paginate(5);
+        $datos['Lugar'] = Lugar::paginate(1000);
 
         return view('Lugar.index',$datos);
     }
@@ -40,6 +44,12 @@ class LugarController extends Controller
     public function store(Request $request)
     {
         //$datosLugar=request()->all();
+        //Para requerir y validar datos
+        $campos=[
+            'Lugar'=>'required|string|max:100'
+        ];
+        $Mensaje=["required"=>'El :attribute es requerido'];
+        $this->validate($request,$campos,$Mensaje);
 
         $datosLugar=request()->except('_token');
         Lugar::insert($datosLugar);
@@ -83,6 +93,14 @@ class LugarController extends Controller
     public function update(Request $request, $id)
     {
         //
+        //Para requerir y validar datos
+        $campos=[
+            'Lugar'=>'required|string|max:100'
+        ];
+        $Mensaje=["required"=>'El :attribute es requerido'];
+        $this->validate($request,$campos,$Mensaje);
+
+
         $datosLugar=request()->except(['_token','_method']);
         Lugar::where('id','=',$id)->update($datosLugar);
 
