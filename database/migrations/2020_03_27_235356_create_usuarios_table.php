@@ -28,12 +28,12 @@ class CreateUsuariosTable extends Migration
 
 
             $table->foreign('lugars_id')->references('id')->on('lugars')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onDelete('no action')
+                ->onUpdate('no action');
 
             $table->foreign('users_id')->references('id')->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onDelete('no action')
+                ->onUpdate('no action');
 
 
 
