@@ -33,6 +33,3 @@ Route::resource('Usuario', 'UsuarioController')/*->middleware('auth')*/;
 Auth::routes(/*['register'=>false]*/);
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-
-Route::resource('prueba', 'PruebaController');
