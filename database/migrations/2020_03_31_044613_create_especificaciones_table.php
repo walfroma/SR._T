@@ -14,8 +14,24 @@ class CreateEspecificacionesTable extends Migration
     public function up()
     {
         Schema::create('especificaciones', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->integer('modelos_id')->unsigned();
+            $table->integer('pantallas_id')->unsigned();
+            $table->integer('baterias_id')->unsigned();
+            $table->string('Procesador')->nullable();
             $table->timestamps();
+
+            $table->foreign('modelos_id')->references('id')->on('modelos')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
+            $table->foreign('baterias_id')->references('id')->on('baterias')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
+            $table->foreign('pantallas_id')->references('id')->on('pantallas')
+                ->onDelete('no action')
+                ->onUpdate('no action');
         });
     }
 

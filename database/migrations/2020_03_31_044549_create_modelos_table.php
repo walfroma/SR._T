@@ -14,8 +14,24 @@ class CreateModelosTable extends Migration
     public function up()
     {
         Schema::create('modelos', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->string('Modelo', 45)->nullable();
+            $table->integer('marcas_id')->unsigned();
+            $table->string('resolucion', 45)->nullable();
+            $table->string('Cam_Tras', 45)->nullable();
+            $table->string('Cam_Front', 45)->nullable();
+            $table->string('MicroSD', 45)->nullable();
+            $table->string('Lector_Huella', 45)->nullable();
+            $table->string('Sistema Operativo', 45)->nullable();
+            $table->string('Ram', 45)->nullable();
+            $table->string('Almacenamiento', 45)->nullable();
+            $table->string('Descripcion', 300)->nullable();
             $table->timestamps();
+
+            $table->foreign('marcas_id')->references('id')->on('marcas')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
         });
     }
 

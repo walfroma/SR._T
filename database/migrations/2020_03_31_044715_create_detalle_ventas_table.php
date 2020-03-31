@@ -14,8 +14,21 @@ class CreateDetalleVentasTable extends Migration
     public function up()
     {
         Schema::create('detalle_ventas', function (Blueprint $table) {
-            $table->id();
+            $table->increments('id');
+            $table->integer('facturas_id')->unsigned();
+            $table->integer('Cantidad')->nullable();
+            $table->float('Precio')->nullable();
+            $table->integer('productos_id')->unsigned();
             $table->timestamps();
+
+            $table->foreign('facturas_id')->references('id')->on('facturas')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
+            $table->foreign('productos_id')->references('id')->on('productos')
+                ->onDelete('no action')
+                ->onUpdate('no action');
+
         });
     }
 
