@@ -18,6 +18,19 @@
                     <br/>
                     <br/>
                     <a href=" {{ url('Bateria') }}">Bateria</a>
+                    <br/>
+                    <br/>
+                    <a href=" {{ url('Marca') }}">Marca</a>
+                    <br/>
+                    <br/>
+                    <a href=" {{ url('Negocio') }}">Negocio</a>
+                    <br/>
+                    <br/>
+                    <a href=" {{ url('Pantalla') }}">Pantalla</a>
+                    <br/>
+                    <br/>
+                    <a href=" {{ url('Tipo_Reparacion') }}">Bateria</a>
+               
 
                 </div>
             </div>

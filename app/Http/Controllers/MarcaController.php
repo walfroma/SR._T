@@ -12,9 +12,25 @@ class MarcaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $id)
     {
         //
+        $keyword = $id->get('search');
+        $perPage = 20;
+
+        if (!empty($keyword)) {
+            $Marca = Marca::where('Marca', 'LIKE', "%$keyword%")
+                ->orWhere('id', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $Marca = Marca::latest()->paginate($perPage);
+
+        }
+
+        return view('Marca.index',  compact('Marca'));
+
+
+
     }
 
     /**
@@ -25,6 +41,7 @@ class MarcaController extends Controller
     public function create()
     {
         //
+        return view('Marca.create' );
     }
 
     /**
@@ -35,51 +52,87 @@ class MarcaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //$datosMarca=request()->all();
+        //Para requerir y validar datos
+        $campos=[
+            'Marca'=>'required|string|max:100'
+        ];
+        $Mensaje=["required"=>'La :attribute es requerida'];
+        $this->validate($request,$campos,$Mensaje);
+
+        $datosMarca=request()->except('_token');
+        Marca::insert($datosMarca);
+
+        //return response()->json($datosMarca);
+        return redirect('Marca')->with('Mensaje','Marca agregado con Exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Marca  $marca
+     * @param  \App\Marca  $Marca
      * @return \Illuminate\Http\Response
      */
-    public function show(Marca $marca)
+    public function show($id)
     {
         //
+        $Marca = Marca::findOrFail($id);
+
+        return view('Marca.show', compact('Marca'));
+
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Marca  $marca
+     * @param  \App\Marca  $Marca
      * @return \Illuminate\Http\Response
      */
-    public function edit(Marca $marca)
+    public function edit($id)
     {
         //
+        $Marca = Marca::findOrFail($id);
+
+        return view('Marca.edit',compact('Marca'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Marca  $marca
+     * @param  \App\Marca  $Marca
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Marca $marca)
+    public function update(Request $request, $id)
     {
         //
+        //Para requerir y validar datos
+        $campos=[
+            'Marca'=>'required|string|max:100'
+        ];
+        $Mensaje=["required"=>'El :attribute es requerido'];
+        $this->validate($request,$campos,$Mensaje);
+
+
+        $datosMarca=request()->except(['_token','_method']);
+        Marca::where('id','=',$id)->update($datosMarca);
+
+        //$Marca = Marca::findOrFail($id);
+        //return view('Marca.edit',compact('Marca'));
+        return redirect('Marca')->with('Mensaje','Marca modificado con Exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Marca  $marca
+     * @param  \App\Marca  $Marca
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Marca $marca)
+    public function destroy($id)
     {
         //
+        Marca::destroy($id);
+        //return redirect('Marca');
+        return redirect('Marca')->with('Mensaje','Marca eliminado con Exito');
     }
 }
