@@ -15,6 +15,9 @@
                     <br/>
                     <br/>
                     <a href=" {{ url('Usuario') }}">Usuario</a>
+                    <br/>
+                    <br/>
+                    <a href=" {{ url('Bateria') }}">Bateria</a>
 
                 </div>
             </div>
