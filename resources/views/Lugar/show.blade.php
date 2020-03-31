@@ -10,7 +10,7 @@
                     <div class="card-header">Lugar</div>
                     <div class="card-body">
 
-                        <a href="{{ url('/Lugar') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Regresar </button></a>
+                        <a href="{{ url('/Lugar') }}" title="Back"><button class="btn btn-primary btn-smn"> Regresar </button></a>
 
                         <br/>
                         <br/>

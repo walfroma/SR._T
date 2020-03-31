@@ -4,5 +4,15 @@
 // Variables
 @import 'variables';
 
+$fa-font-path: "../fons";
+
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+//Font-awesome
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import 'node_modules/css-loader/index.js';
+
+
+

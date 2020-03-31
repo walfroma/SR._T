@@ -15,7 +15,7 @@ class CreateUsuariosTable extends Migration
     {
         Schema::create('usuarios', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('users_id')->unsigned();
+
             $table->string('Nombre', 45)->nullable();
             $table->string('Apellido', 45)->nullable();
             $table->string('Telefono', 45)->nullable();
@@ -31,9 +31,7 @@ class CreateUsuariosTable extends Migration
                 ->onDelete('no action')
                 ->onUpdate('no action');
 
-            $table->foreign('users_id')->references('id')->on('users')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+
 
 
 

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Lugar;
 use App\Usuario;
 use Illuminate\Http\Request;
+
+use App\Http\Requests;
 
 class UsuarioController extends Controller
 {
@@ -12,9 +15,26 @@ class UsuarioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $id)
     {
         //
+        $Lugar = Lugar::all();
+        $keyword = $id->get('search');
+        $perPage = 20;
+
+        if (!empty($keyword)) {
+            $Usuario = Usuario::where('Nombre', 'LIKE', "%$keyword%")
+                ->orWhere('id', 'LIKE', "%$keyword%")->orWhere('Apellido', 'LIKE', "%$keyword%")
+                ->orWhere('Telefono', 'LIKE', "%$keyword%")->orWhere('Direccion', 'LIKE', "%$keyword%")
+                ->orWhere('Tipo_Usuario', 'LIKE', "%$keyword%")->orWhere('lugars_id', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $Usuario = Usuario::latest()->paginate($perPage);
+
+
+        }
+
+        return view('Usuario.index', compact('Usuario', 'Lugar'));
     }
 
     /**
@@ -25,6 +45,10 @@ class UsuarioController extends Controller
     public function create()
     {
         //
+        $Usuario = Usuario::all();
+        $Lugar = Lugar::all();
+        return view('Usuario.create',  compact('Usuario','Lugar'));
+
     }
 
     /**
@@ -36,6 +60,23 @@ class UsuarioController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'Nombre'=>'required|string|max:100',
+            'Apellido'=>'required|string|max:100',
+            'Telefono'=>'required|integer',
+            'Direccion'=>'required|string|max:100',
+            'Tipo_Usuario'=>'required|string|max:100',
+            'lugars_id'=>'required|integer',
+
+        ];
+        $Mensaje=["required"=>'El :attribute es requerido'];
+        $this->validate($request,$campos,$Mensaje);
+
+        $datosUsuario=request()->except('_token');
+        Usuario::insert($datosUsuario);
+
+        //return response()->json($datosLugar);
+        return redirect('Usuario')->with('Mensaje','Usuario agregado con Exito');
     }
 
     /**
@@ -44,9 +85,15 @@ class UsuarioController extends Controller
      * @param  \App\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function show(Usuario $usuario)
+    public function show($id)
     {
         //
+        $Lugar = Lugar::all();
+        $Usuario = Usuario::findOrFail($id);
+
+
+
+        return view('Usuario.show', compact('Usuario', 'Lugar'));
     }
 
     /**
@@ -55,9 +102,15 @@ class UsuarioController extends Controller
      * @param  \App\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function edit(Usuario $usuario)
+    public function edit($id)
     {
         //
+
+
+        $Usuario = Usuario::findOrFail($id);
+        $Lugar = Lugar::all();
+
+        return view('Usuario.edit',compact('Usuario', 'Lugar'));
     }
 
     /**
@@ -67,9 +120,27 @@ class UsuarioController extends Controller
      * @param  \App\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Usuario $usuario)
+    public function update(Request $request, $id)
     {
         //
+        $campos=[
+            'Nombre'=>'required|string|max:100',
+            'Apellido'=>'required|string|max:100',
+            'Telefono'=>'required|integer',
+            'Direccion'=>'required|string|max:100',
+            'Tipo_Usuario'=>'required|string|max:100',
+            'lugars_id'=>'required|integer',
+        ];
+        $Mensaje=["required"=>'El :attribute es requerido'];
+        $this->validate($request,$campos,$Mensaje);
+
+
+        $datosUsuario=request()->except(['_token','_method']);
+        Usuario::where('id','=',$id)->update($datosUsuario);
+
+        //$Lugar = Lugar::findOrFail($id);
+        //return view('Lugar.edit',compact('Lugar'));
+        return redirect('Usuario')->with('Mensaje','Usuario modificado con Exito');
     }
 
     /**
@@ -78,8 +149,11 @@ class UsuarioController extends Controller
      * @param  \App\Usuario  $usuario
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Usuario $usuario)
+    public function destroy($id)
     {
         //
+        Usuario::destroy($id);
+        //return redirect('Lugar');
+        return redirect('Usuario')->with('Mensaje','Usuario eliminado con Exito');
     }
 }

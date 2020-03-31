@@ -16,10 +16,10 @@ class LugarController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(Request $id)
     {
         //
-        $keyword = $request->get('search');
+        $keyword = $id->get('search');
         $perPage = 20;
 
         if (!empty($keyword)) {
@@ -28,9 +28,13 @@ class LugarController extends Controller
                 ->latest()->paginate($perPage);
         } else {
             $Lugar = Lugar::latest()->paginate($perPage);
+
         }
 
-        return view('Lugar.index', compact('Lugar'));
+        return view('Lugar.index',  compact('Lugar'));
+
+
+
     }
 
     /**
@@ -41,7 +45,7 @@ class LugarController extends Controller
     public function create()
     {
         //
-        return view('Lugar.create');
+        return view('Lugar.create' );
     }
 
     /**

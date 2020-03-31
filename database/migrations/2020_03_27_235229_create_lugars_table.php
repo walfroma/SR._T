@@ -15,7 +15,7 @@ class CreateLugarsTable extends Migration
     {
         Schema::create('lugars', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('Lugar', 50)->nullable();
+            $table->string('Lugar')->nullable();
             $table->timestamps();
         });
     }

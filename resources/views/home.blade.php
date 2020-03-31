@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
 
             @include('admin.sidebar')
-        <div class="col-md-8">
+        <div class="col-md-8" aria-labelledby="home">
             <div class="card">
                 <div class="card-header">Dashboard</div>
 
@@ -16,7 +16,14 @@
                         </div>
                     @endif
 
-                    You are logged in!
+
+
+
+
+
+
+
+
                 </div>
             </div>
         </div>

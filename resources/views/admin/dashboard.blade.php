@@ -10,7 +10,7 @@
                     <div class="card-header">Menu</div>
 
                     <div class="card-body">
-                        Your application's dashboard.
+
                     </div>
                 </div>
             </div>

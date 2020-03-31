@@ -20,7 +20,7 @@ Route::get('/', function () {
 //Route::get('/Lugar', 'LugarController@index');
 //Route::get('/Lugar/create', 'LugarController@create');
 
-Route::resource('Lugar', 'LugarController') ->middleware('auth');
+Route::resource('Lugar', 'LugarController') /*->middleware('auth')*/;
 Route::resource('Bateria', 'BateriaController')/*->middleware('auth')*/;
 Route::resource('Marca', 'MarcaController')/*->middleware('auth')*/;
 Route::resource('Negocio', 'NegocioController')/*->middleware('auth')*/;
