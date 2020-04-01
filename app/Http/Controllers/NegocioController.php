@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Negocio;
+use App\Usuario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class NegocioController extends Controller
 {
@@ -12,9 +14,29 @@ class NegocioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $id)
     {
         //
+
+        $keyword = $id->get('search');
+        $perPage = 20;
+
+        if (!empty($keyword)) {
+            $Negocio = Negocio::where('Negocio', 'LIKE', "%$keyword%")
+                ->orWhere('id', 'LIKE', "%$keyword%")->orWhere('Telefono', 'LIKE', "%$keyword%")
+                ->orWhere('Direccion', 'LIKE', "%$keyword%")->orWhere('Ubicacion', 'LIKE', "%$keyword%")
+                ->orWhere('Correo', 'LIKE', "%$keyword%")->orWhere('usuarios_id', 'LIKE', "%$keyword%")
+                ->latest()->paginate($perPage);
+        } else {
+            $Negocio = Negocio::latest()->paginate($perPage);
+
+
+        }
+
+
+
+
+        return view('Negocio.index', compact('Negocio'));
     }
 
     /**
@@ -25,6 +47,10 @@ class NegocioController extends Controller
     public function create()
     {
         //
+        $Negocio = Negocio::all();
+        $Usuario = Usuario::all();
+        return view('Negocio.create',  compact('Negocio','Usuario'));
+
     }
 
     /**
@@ -36,50 +62,107 @@ class NegocioController extends Controller
     public function store(Request $request)
     {
         //
+        $campos=[
+            'Negocio'=>'required|string|max:100',
+            'Telefono'=>'required|integer',
+            'Direccion'=>'required|string|max:100',
+            'Ubicacion'=>'required|string|max:100',
+            'Correo'=>'required|string|max:100',
+            'usuarios_id'=>'required|integer',
+
+        ];
+        $Mensaje=["required"=>'El :attribute es requerido'];
+        $this->validate($request,$campos,$Mensaje);
+
+        $datosNegocio=request()->except('_token');
+        Negocio::insert($datosNegocio);
+
+        //return response()->json($datosLugar);
+        return redirect('Negocio')->with('Mensaje','Negocio agregado con Exito');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Negocio  $negocio
+     * @param  \App\Negocio  $Negocio
      * @return \Illuminate\Http\Response
      */
-    public function show(Negocio $negocio)
+    public function show($id)
     {
         //
+        $Usuario = DB::table('usuarios')
+            ->join('negocios', 'usuarios.id' , '=' , 'negocios.usuarios_id')
+            ->select('usuarios.Nombre')
+        ->get();
+
+
+
+
+        $Negocio = Negocio::findOrFail($id);
+
+
+
+        return view('Negocio.show', compact('Negocio', 'Usuario'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Negocio  $negocio
+     * @param  \App\Negocio  $Negocio
      * @return \Illuminate\Http\Response
      */
-    public function edit(Negocio $negocio)
+    public function edit($id)
     {
         //
+
+
+        $Negocio = Negocio::findOrFail($id);
+        $Usuario = Usuario::all();
+
+        return view('Negocio.edit',compact('Negocio', 'Usuario'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Negocio  $negocio
+     * @param  \App\Negocio  $Negocio
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Negocio $negocio)
+    public function update(Request $request, $id)
     {
         //
+        $campos=[
+            'Negocio'=>'required|string|max:100',
+            'Telefono'=>'required|integer',
+            'Direccion'=>'required|string|max:100',
+            'Ubicacion'=>'required|string|max:100',
+            'Correo'=>'required|string|max:100',
+            'usuarios_id'=>'required|integer',
+        ];
+        $Mensaje=["required"=>'El :attribute es requerido'];
+        $this->validate($request,$campos,$Mensaje);
+
+
+        $datosNegocio=request()->except(['_token','_method']);
+        Negocio::where('id','=',$id)->update($datosNegocio);
+
+        //$Lugar = Lugar::findOrFail($id);
+        //return view('Lugar.edit',compact('Lugar'));
+        return redirect('Negocio')->with('Mensaje','Negocio modificado con Exito');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Negocio  $negocio
+     * @param  \App\Negocio  $Negocio
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Negocio $negocio)
+    public function destroy($id)
     {
         //
+        Negocio::destroy($id);
+        //return redirect('Lugar');
+        return redirect('Negocio')->with('Mensaje','Negocio eliminado con Exito');
     }
 }
