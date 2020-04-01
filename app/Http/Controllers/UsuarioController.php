@@ -47,6 +47,7 @@ class UsuarioController extends Controller
         //
         $Usuario = Usuario::all();
         $Lugar = Lugar::all();
+
         return view('Usuario.create',  compact('Usuario','Lugar'));
 
     }
@@ -66,7 +67,7 @@ class UsuarioController extends Controller
             'Telefono'=>'required|integer',
             'Direccion'=>'required|string|max:100',
             'Tipo_Usuario'=>'required|string|max:100',
-            'lugars_id'=>'required|integer',
+            'lugars_id'=>'required',
 
         ];
         $Mensaje=["required"=>'El :attribute es requerido'];

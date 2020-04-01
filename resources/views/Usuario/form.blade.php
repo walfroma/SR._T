@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-
+<form>
     <div class="container">
 
         <div class="row">
@@ -48,13 +48,14 @@
                                 <option value="Administrador"> Administrador </option>
                             </select>
                             <br/>
-                            <label for="lugars_id" class="control-label"> {{'Lugar'}}  </label>
+
+                            <label for="lugars_id" class="control-label"> {{'Lugar'}}</label>
                             <a class="btn btn-success btn-sm   d-block mx-auto float-right"   data-toggle="modal" data-target="#exampleModalCenter">Crear Lugar</a>
-                            <select name="lugars_id" id="inputLugar_id" class="form-control" value="{{ isset($Lugar->lugars_id)? $Lugar->lugars_id:''}}">
-                                <option> -- Seleccione Opcion --</option>
+                            <select name="lugars_id" id="inputlugars_id" class="form-control" value="{{ isset($Lugar->lugras_id)? $Lugar->lugras_id:''}}">
+                                <option value=""> -- Seleccione Opcion --</option>
                                 @foreach($Lugar as $Lugar )
 
-                                    <option value="{{$Lugar['id']}} "> {{$Lugar['Lugar']}}</option>
+                                    <option value="{{$Lugar['id']}} "> {{$Lugar['Lugar']}} </option>
                                 @endforeach
                             </select>
 
@@ -82,47 +83,50 @@
     </div>
 
 
+</form>>
+
     <!– Esta es la pantilla  –>
     <form action ='{{ url('Lugar') }}' class="form-horizontal"  method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
 
 
-    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="form-group">
-                        <label for="Lugar" class="control-label"> {{'Lugar'}}</label>
-                        <input type="text" class="form-control " name="Lugar" id="Lugar">
-
-                        {!! $errors->first('Lugar','<div class="invalid-feedback"> :message</div>') !!}
-
+        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
                     </div>
-                    <div class=" form-inline mb-2 mb-lg-0 col v-center">
-                        <div class="input-group">
-                            <a href="{{'/Usuario/create'}}"><input type="submit" class="btn btn-success  mr-sm-3 d-block mx-auto " value="{{ $Modo == 'crear' ? 'Agregar' : 'Editar' }}"><a/>
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div class="modal-body">
+
+                        <div class="form-group">
+                            <label for="Lugar" class="control-label"> {{'Lugar'}}</label>
+                            <input type="text" class="form-control " name="Lugar" id="Lugar">
+
+                            {!! $errors->first('Lugar','<div class="invalid-feedback"> :message</div>') !!}
 
                         </div>
+                        <div class=" form-inline mb-2 mb-lg-0 col v-center">
+                            <div class="input-group">
+                                <a href="{{'/Usuario/create'}}"><input type="submit" class="btn btn-success  mr-sm-3 d-block mx-auto " value="{{ $Modo == 'crear' ? 'Agregar' : 'Editar' }}"></a>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+                            </div>
+                        </div>
                     </div>
-                </div>
                 </div>
                 <div class="modal-footer">
 
                 </div>
             </div>
         </div>
-    </div>
+        </div>
     </form>
 
-@endsection
 
+
+@endsection
 
 

@@ -22,7 +22,7 @@ class CreateModelosTable extends Migration
             $table->string('Cam_Front', 45)->nullable();
             $table->string('MicroSD', 45)->nullable();
             $table->string('Lector_Huella', 45)->nullable();
-            $table->string('Sistema Operativo', 45)->nullable();
+            $table->string('SistemaOperativo', 45)->nullable();
             $table->string('Ram', 45)->nullable();
             $table->string('Almacenamiento', 45)->nullable();
             $table->string('Descripcion', 300)->nullable();

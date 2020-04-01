@@ -44,11 +44,11 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th>No</th>
-                                    <th  >Nombre / Apellido</th>
-                                    <th  >Telelfono</th>
-                                    <th  >Direccion</th>
-                                    <th  >Tipo Usuario</th>
-                                    <th  >Acciones</th>
+                                    <th>Nombre / Apellido</th>
+                                    <th>Telelfono</th>
+                                    <th>Direccion</th>
+                                    <th>Tipo Usuario</th>
+                                    <th>Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
