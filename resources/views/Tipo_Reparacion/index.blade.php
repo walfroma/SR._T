@@ -4,10 +4,11 @@
 
 @section('content')
     <div class="container">
+        @include('admin.sidebar')
         <div class="row">
-            @include('admin.sidebar')
 
-            <div class="col-md-9" >
+
+            <div class="col-md-auto" >
                 <div class="card">
                     <div class="card-header">Tipo Reparacion</div>
                     <div class="card-body">

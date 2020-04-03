@@ -67,14 +67,14 @@
                             {!! $errors->first('Usuario','<div class="invalid-feedback"> :message</div>') !!}
 
                         </div>
-                        <div class=" form-inline mb-2 mb-lg-0 col v-center">
-                            <div class="input-group">
-                                <input type="submit" class="btn btn-success  mr-sm-3 d-block mx-auto " value="{{ $Modo == 'crear' ? 'Agregar' : 'Editar' }}">
+                            <div class=" form-inline mb-2 mb-lg-0 col v-center">
+                                <div class="input-group">
+                                    <input type="submit" class="btn btn-success  mr-sm-3 d-block mx-auto " value="{{ $Modo == 'crearUsuario' ? 'Agregar' : 'Editar' }}">
 
-                                <a class="btn btn-primary mr-sm-3  d-block mx-auto" href=" {{ url('Usuario') }}">Regrasar Usuario</a>
+                                    <a class="btn btn-primary mr-sm-3  d-block mx-auto" href=" {{ url('Usuario') }}">Regrasar Usuario</a>
 
 
-                            </div>
+                                </div>
                         </div>
                     </div>
                 </div>

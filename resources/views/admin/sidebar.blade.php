@@ -1,4 +1,5 @@
-<div class="col-md-3">
+
+<div class="col-md-auto float-left ">
     <div class="card">
         <div class="card-header">
 
@@ -30,7 +31,7 @@
                     <br/>
                     <br/>
                     <a href=" {{ url('Tipo_Reparacion') }}">Bateria</a>
-               
+
 
                 </div>
             </div>
