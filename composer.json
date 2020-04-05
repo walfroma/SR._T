@@ -15,7 +15,8 @@
         "laravel/framework": "^7.0",
         "laravel/helpers": "^1.2",
         "laravel/tinker": "^2.0",
-        "laravel/ui": "^2.0"
+        "laravel/ui": "^2.0",
+        "spatie/laravel-permission": "^3.11"
     },
     "require-dev": {
         "appzcoder/crud-generator": "^3.2",

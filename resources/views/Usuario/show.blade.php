@@ -1,9 +1,9 @@
+
 @extends('layouts.app')
 
 @section('content')
     <div class="container">
         <div class="row">
-            @include('admin.sidebar')
 
             <div class="col-md-9">
                 <div class="card">
@@ -23,32 +23,29 @@
                                 </tr>
 
                                 <tr>
-                                    <th> Nombre </th><td> {{ $Usuario->Nombre }} </td>
+                                    <th> Nombre </th>
+                                    <td> {{ $Usuario->name }} </td>
                                 </tr>
-
                                 <tr>
-                                    <th> Apellido </th><td> {{ $Usuario->Apellido }} </td>
+                                    <th> Correo </th>
+                                    <td> {{ $Usuario->email }} </td>
                                 </tr>
-
                                 <tr>
-                                    <th> Telefono </th><td> {{ $Usuario->Telefono }} </td>
+                                    <th> Correo </th>
+                                    <td> {{ $Usuario->Nombre }} </td>
                                 </tr>
-
                                 <tr>
-                                    <th> Direccion </th><td> {{ $Usuario->Direccion }} </td>
+                                    <th> Correo </th>
+                                    <td> {{ $Usuario->Apellido }} </td>
                                 </tr>
-
                                 <tr>
-                                    <th> Tipo Usuario </th><td> {{ $Usuario->Tipo_Usuario }} </td>
+                                    <th> Correo </th>
+                                    <td> {{ $Usuario->Telefono }} </td>
                                 </tr>
-
                                 <tr>
-                                    @foreach($Lugar as $Lugar )
-                                        <th> Lugar </th><td value="{{$Lugar['id']}} ">   {{$Lugar['Lugar']}} </td>
-                                    @endforeach
+                                    <th> Correo </th>
+                                    <td> {{ $Usuario->Direccion }} </td>
                                 </tr>
-
-
 
                                 </tbody>
                             </table>

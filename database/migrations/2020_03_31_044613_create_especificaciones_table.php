@@ -18,7 +18,6 @@ class CreateEspecificacionesTable extends Migration
             $table->integer('modelos_id')->unsigned();
             $table->integer('pantallas_id')->unsigned();
             $table->integer('baterias_id')->unsigned();
-            $table->string('Procesador')->nullable();
             $table->timestamps();
 
             $table->foreign('modelos_id')->references('id')->on('modelos')

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Negocio;
-use App\Usuario;
+use App\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,7 +26,7 @@ class NegocioController extends Controller
             $Negocio = Negocio::where('Negocio', 'LIKE', "%$keyword%")
                 ->orWhere('id', 'LIKE', "%$keyword%")->orWhere('Telefono', 'LIKE', "%$keyword%")
                 ->orWhere('Direccion', 'LIKE', "%$keyword%")->orWhere('Ubicacion', 'LIKE', "%$keyword%")
-                ->orWhere('Correo', 'LIKE', "%$keyword%")->orWhere('usuarios_id', 'LIKE', "%$keyword%")
+                ->orWhere('Correo', 'LIKE', "%$keyword%")->orWhere('users_id', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $Negocio = Negocio::latest()->paginate($perPage);
@@ -48,7 +49,7 @@ class NegocioController extends Controller
     {
         //
         $Negocio = Negocio::all();
-        $Usuario = Usuario::all();
+        $Usuario = User::all();
         return view('Negocio.create',  compact('Negocio','Usuario'));
 
     }
@@ -90,9 +91,9 @@ class NegocioController extends Controller
     public function show($id)
     {
         //
-        $Usuario = DB::table('usuarios')
-            ->join('negocios', 'usuarios.id' , '=' , 'negocios.usuarios_id')
-            ->select('usuarios.Nombre')
+        $Usuario = DB::table('users')
+            ->join('negocios', 'users.id' , '=' , 'negocios.users_id')
+            ->select('users.Nombre')
         ->get();
 
 
@@ -117,7 +118,7 @@ class NegocioController extends Controller
 
 
         $Negocio = Negocio::findOrFail($id);
-        $Usuario = Usuario::all();
+        $Usuario = User::all();
 
         return view('Negocio.edit',compact('Negocio', 'Usuario'));
     }

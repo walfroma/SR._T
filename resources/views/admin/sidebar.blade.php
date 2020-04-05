@@ -31,6 +31,21 @@
                     <br/>
                     <br/>
                     <a href=" {{ url('Tipo_Reparacion') }}">Bateria</a>
+                    <br/>
+                    <br/>
+                    <a href=" {{ url('Especificaciones') }}">Especificaciones del Telefono</a>
+                    <br/>
+                    <br/>
+                    <a href=" {{ url('DetalleVenta') }}">Detalle Venta</a>
+                    <br/>
+                    <br/>
+                    <a href=" {{ url('Factura') }}">Factura</a>
+                    <br/>
+                    <br/>
+                    <a href=" {{ url('Reservacion') }}">Reservaciones</a>
+                    <br/>
+                    <br/>
+                    <a href=" {{ url('Modelo') }}">Telefonos</a>
 
 
                 </div>

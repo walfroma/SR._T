@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form>
+
         <div class="container">
 
             <div class="row">
@@ -60,9 +60,6 @@
                                 </select>
                                 <br/>
 
-                                <label for="Procesador" class="control-label"> {{'Procesador'}}</label>
-                                <input type="text" class="form-control {{$errors->has('Procesador') ? 'is-invalid' :'' }}" name="Procesador" id="Procesador" value="{{ isset($Especificaciones->Procesador)? $Especificaciones->Procesador:''}}">
-                                <br/>
 
 
 
@@ -89,7 +86,6 @@
         </div>
 
 
-    </form>>
 
     <!– Esta es la pantilla  –>
     <form action ='{{ url('Pantalla') }}' class="form-horizontal"  method="post" enctype="multipart/form-data">
@@ -128,7 +124,7 @@
                 </div>
             </div>
         </div>
-        </div>
+
     </form>
 
 
@@ -170,7 +166,7 @@
                 </div>
             </div>
         </div>
-        </div>
+
     </form>
 
 

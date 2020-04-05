@@ -10,7 +10,7 @@
 
             <div class="col-md-9" >
                 <div class="card">
-                    <div class="card-header">Modelo</div>
+                    <div class="card-header">Telefono</div>
                     <div class="card-body">
 
                         <a href="{{ url('Modelo/create') }}" class="btn btn-success btn-smn  float-left mr-sm-2" title="Crear Modelo">

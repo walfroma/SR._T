@@ -12,7 +12,7 @@
                     <div class="card-header">Marca</div>
                     <div class="card-body">
 
-
+                        <a class="btn btn-primary float-left mr-sm-2" href=" {{ url('Modelo/create') }}">Regresar</a>
                         <a href="{{ url('Marca/create') }}" class="btn btn-success btn-smn  float-left mr-sm-2" title="Crear  Marca">
                             Agregar Marca</a>
 

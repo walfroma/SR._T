@@ -26,7 +26,7 @@ class CreateNegociosTable extends Migration
 
 
 
-            $table->foreign('usuarios_id')->references('id')->on('usuarios')
+            $table->foreign('usuarios_id')->references('id')->on('users')
                 ->onDelete('no action')
                 ->onUpdate('no action');
 

@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Modelo;
 use App\Marca;
+use App\Negocio;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ModeloController extends Controller
 {
@@ -21,11 +24,12 @@ class ModeloController extends Controller
         $perPage = 20;
 
         if (!empty($keyword)) {
-            $Modelo = Modelo::where('Modelo', 'LIKE', "%$keyword%")
-                ->orWhere('Descripcion', 'LIKE', "%$keyword%")->orWhere('marcas_id', 'LIKE', "%$keyword%")
+            $Modelo = Negocio::where('Modelo', 'LIKE', "%$keyword%")
                 ->orWhere('resolucion', 'LIKE', "%$keyword%")->orWhere('Cam_Tras', 'LIKE', "%$keyword%")
-                ->orWhere('Cam_Front', 'LIKE', "%$keyword%")->orWhere('SistemaOperativo', 'LIKE', "%$keyword%")
+                ->orWhere('Cam_Front', 'LIKE', "%$keyword%")->orWhere('MicroSD', 'LIKE', "%$keyword%")
+                ->orWhere('Lector_Huella', 'LIKE', "%$keyword%")->orWhere('SistemaOperativo', 'LIKE', "%$keyword%")
                 ->orWhere('Ram', 'LIKE', "%$keyword%")->orWhere('Almacenamiento', 'LIKE', "%$keyword%")
+                ->orWhere('Descripcion', 'LIKE', "%$keyword%")
                 ->latest()->paginate($perPage);
         } else {
             $Modelo = Modelo::latest()->paginate($perPage);
@@ -75,12 +79,13 @@ class ModeloController extends Controller
             'Almacenamiento'=>'required|string',
             'Descripcion'=>'required|string'
 
+
         ];
         $Mensaje=["required"=>'El :attribute es requerido'];
         $this->validate($request,$campos,$Mensaje);
 
-        $datosModelo=request()->except('_token');
-        Modelo::insert($datosModelo);
+        $datosNegocio=request()->except('_token');
+        Modelo::insert($datosNegocio);
 
         //return response()->json($datosLugar);
         return redirect('Modelo')->with('Mensaje','Modelo agregado con Exito');
@@ -89,26 +94,31 @@ class ModeloController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Modelo  $Modelo
+     * @param  \App\Negocio  $Negocio
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
         //
-        //
+        $Marca = DB::table('marcas')
+            ->join('modelos', 'marcas.id' , '=' , 'modelos.users_id')
+            ->select('marcas.Marca')
+            ->get();
+
+
 
 
         $Modelo = Modelo::findOrFail($id);
 
 
 
-        return view('Modelo.show', compact('Modelo'));
+        return view('Negocio.show', compact('Modelo', 'Marca'));
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Modelo  $Modelo
+     * @param  \App\Negocio  $Negocio
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -126,7 +136,7 @@ class ModeloController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Modelo  $Modelo
+     * @param  \App\Negocio  $Negocio
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -144,13 +154,14 @@ class ModeloController extends Controller
             'Ram'=>'required|string',
             'Almacenamiento'=>'required|string',
             'Descripcion'=>'required|string'
+
         ];
         $Mensaje=["required"=>'El :attribute es requerido'];
         $this->validate($request,$campos,$Mensaje);
 
 
-        $datosModelo=request()->except(['_token','_method']);
-        Modelo::where('id','=',$id)->update($datosModelo);
+        $datosNegocio=request()->except(['_token','_method']);
+        Modelo::where('id','=',$id)->update($datosNegocio);
 
         //$Lugar = Lugar::findOrFail($id);
         //return view('Lugar.edit',compact('Lugar'));
@@ -160,7 +171,7 @@ class ModeloController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Modelo  $Modelo
+     * @param  \App\Negocio  $Negocio
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

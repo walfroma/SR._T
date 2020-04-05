@@ -26,7 +26,11 @@ Route::resource('Marca', 'MarcaController')/*->middleware('auth')*/;
 Route::resource('Negocio', 'NegocioController')/*->middleware('auth')*/;
 Route::resource('Pantalla', 'PantallaController')/*->middleware('auth')*/;
 Route::resource('Tipo_Reparacion', 'TipoReparacionController')/*->middleware('auth')*/;
-Route::resource('Usuario', 'UsuarioController')/*->middleware('auth')*/;
+
+//Route::group(['middleware' => ['role:master|editor|moderador']], function (){
+    Route::resource('Usuario', 'UsersController');
+//});
+
 Route::resource('Modelo', 'ModeloController')/*->middleware('auth')*/;
 Route::resource('Detalle_Venta', 'DetalleVentaController')/*->middleware('auth')*/;
 Route::resource('Especificaciones', 'EspecificacionesController')/*->middleware('auth')*/;

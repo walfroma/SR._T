@@ -2,7 +2,7 @@
 @extends('layouts.app')
 
 @section('content')
-<form>
+
     <div class="container">
 
         <div class="row">
@@ -31,33 +31,30 @@
                             <label for="Modelo" class="control-label"> {{'Modelo'}}</label>
                             <input type="text" class="form-control {{$errors->has('Modelo') ? 'is-invalid' :'' }}" name="Modelo" id="Modelo" value="{{ isset($Modelo->Modelo)? $Modelo->Modelo:''}}">
                             <br/>
-
-                            <label for="marcas_id" class="control-label"> {{'Marca'}}  </label>
+                            <label for="usuarios_id" class="control-label"> {{'Usuario'}}</label>
                             <a class="btn btn-success btn-sm   d-block mx-auto float-right"   data-toggle="modal" data-target="#exampleModalCenter">Crear Marca</a>
-                            <select name="marcas_id" id="inputMarca_id" class="form-control" value="{{ isset($Marca->marcas_id)? $Marca->marcas_id:''}}">
+                            <select name="marcas_id" id="marcas_id" class="form-control" value="{{ isset($Marca->marcas_id)? $Marca->marcas_id:''}}">
                                 <option> -- Seleccione Opcion --</option>
                                 @foreach($Marca as $Marca )
 
-                                    <option value="{{$Marca['id']}} "> {{$Marca['Marca']}}</option>
+                                    <option value="{{$Marca['id']}} "> {{$Marca['Marca']}} </option>
                                 @endforeach
                             </select>
                             <br/>
-
-                            <label for="resolucion" class="control-label"> {{'resolucion'}}</label>
+                            <label for="resolucion" class="control-label"> {{'Resolucion'}}</label>
                             <input type="text" class="form-control {{$errors->has('resolucion') ? 'is-invalid' :'' }}" name="resolucion" id="resolucion" value="{{ isset($Modelo->resolucion)? $Modelo->resolucion:''}}">
                             <br/>
-                            <label for="Cam_Tras" class="control-label"> {{'Cam_Tras'}}</label>
+                            <label for="Cam_Tras" class="control-label"> {{'Camara Trasera'}}</label>
                             <input type="text" class="form-control {{$errors->has('Cam_Tras') ? 'is-invalid' :'' }}" name="Cam_Tras" id="Cam_Tras" value="{{ isset($Modelo->Cam_Tras)? $Modelo->Cam_Tras:''}}">
                             <br/>
-                            <label for="Cam_Front" class="control-label"> {{'Cam_Front'}}</label>
+                            <label for="Cam_Front" class="control-label"> {{'Camara Frontal'}}</label>
                             <input type="text" class="form-control {{$errors->has('Cam_Front') ? 'is-invalid' :'' }}" name="Cam_Front" id="Cam_Front" value="{{ isset($Modelo->Cam_Front)? $Modelo->Cam_Front:''}}">
                             <br/>
-
                             <label for="MicroSD" class="control-label"> {{'MicroSD'}}</label>
-                            <select name="MicroSD" class="form-control" id="MicroSD" value="{{ isset($Modelo->MicroSD)? $Modelo->MicroSD:''}}">
-                                <option value=""> Seleccion Opcion </option>
+                            <select name="MicroSD" id="inputMicroSD" class="form-control">
+                                <option value=""> -- Select One -- </option>
                                 <option value="Si"> Si </option>
-                                <option value="No"> No </option>
+                                <option value="No"> No</option>
                             </select>
                             <br/>
 
@@ -76,18 +73,18 @@
                                 <option value="No"> IOS </option>
                             </select>
                             <br/>
-
                             <label for="Ram" class="control-label"> {{'Ram'}}</label>
-                            <input type="text" class="form-control {{$errors->has('Ram') ? 'is-invalid' :'' }}" name="Ram" id="Ram" value="{{ isset($Modelo->Ram)? $Modelo->Ram:''}}">
+                            <input type="text" class="form-control {{$errors->has('Ram') ? 'is-invalid' :'' }}" name="Ram" id="Ram" value="{{ isset($Modelo->V)? $Modelo->Ram:''}}">
                             <br/>
                             <label for="Almacenamiento" class="control-label"> {{'Almacenamiento'}}</label>
                             <input type="text" class="form-control {{$errors->has('Almacenamiento') ? 'is-invalid' :'' }}" name="Almacenamiento" id="Almacenamiento" value="{{ isset($Modelo->Almacenamiento)? $Modelo->Almacenamiento:''}}">
                             <br/>
+                            <label for="Procesador" class="control-label"> {{'Procesador'}}</label>
+                            <input type="text" class="form-control {{$errors->has('Procesador') ? 'is-invalid' :'' }}" name="Procesador" id="Procesador" value="{{ isset($Modelo->Procesador)? $Modelo->Procesador:''}}">
+                            <br/>
                             <label for="Descripcion" class="control-label"> {{'Descripcion'}}</label>
                             <input type="text" class="form-control {{$errors->has('Descripcion') ? 'is-invalid' :'' }}" name="Descripcion" id="Descripcion" value="{{ isset($Modelo->Descripcion)? $Modelo->Descripcion:''}}">
                             <br/>
-
-
 
 
 
@@ -111,7 +108,7 @@
         </div>
     </div>
 
-</form>
+
 
     <!– Esta es la pantilla  –>
     <form action ='{{ url('Marca') }}' class="form-horizontal"  method="post" enctype="multipart/form-data">
@@ -150,10 +147,18 @@
                 </div>
             </div>
         </div>
-        </div>
+
     </form>
 
 @endsection
+
+
+
+
+
+
+
+
 
 
 

@@ -7,7 +7,7 @@
 
             <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">Modelo</div>
+                    <div class="card-header">Vista de Telefono</div>
                     <div class="card-body">
 
                         <a href="{{ url('/Modelo') }}" title="Back"><button class="btn btn-primary btn-smn"> Regresar </button></a>

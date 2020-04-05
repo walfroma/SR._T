@@ -63,7 +63,7 @@ class EspecificacionesController extends Controller
     {
         //
         $campos=[
-            'Procesador'=>'required|string|max:100',
+
             'pantallas_id'=>'required',
             'baterias_id'=>'required',
             'modelos_id'=>'required',
@@ -129,7 +129,6 @@ class EspecificacionesController extends Controller
     {
         //
         $campos=[
-            'Procesador'=>'required|string|max:100',
             'pantallas_id'=>'required',
             'baterias_id'=>'required',
             'modelos_id'=>'required',
@@ -160,3 +159,4 @@ class EspecificacionesController extends Controller
         return redirect('Especificaciones')->with('Mensaje','Especificaciones eliminado con Exito');
     }
 }
+

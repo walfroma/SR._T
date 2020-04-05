@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Spatie\Permission\Models\Role;
 
 class RegisterController extends Controller
 {
@@ -29,7 +30,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/Usuario/create';
+    protected $redirectTo = '/Usuario/edit';
 
     /**
      * Create a new controller instance.
@@ -53,6 +54,10 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'Nombre' => ['required', 'string', 'max:255'],
+            'Apellido' => ['required', 'string', 'max:255'],
+            'Telefono' => ['required', 'string', 'max:255'],
+            'Direccion' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -68,6 +73,14 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'Nombre' => Hash::make($data['Nombre']),
+            'Apellido' => Hash::make($data['Apellido']),
+            'Telefono' => Hash::make($data['Telefono']),
+            'Direccion' => Hash::make($data['Direccion']),
         ]);
+
+        $errors = Role::all()->pluck('name', 'id');
+
+        return view('Usuario.create', compact('roles', 'errors') );
     }
 }
