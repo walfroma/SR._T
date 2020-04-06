@@ -32,16 +32,60 @@
 
 
 
+
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
 
-                        <a href="{{'Usuario'}}" class="nav-link">Usuarios</a>
+                        @can('Navegar usuarios')
+                            <a href="{{ url('Usuario')}}" class="nav-link">Usuarios</a>
+                        @endcan
+                        @can('Navegar roles')
+                            <a href="{{url('roles')}}" class="nav-link">Roles</a>
+                        @endcan
+                            @can('Navegar Permisos')
+                                <a href="{{url('permissions')}}" class="nav-link">Permisos</a>
+                            @endcan
+                            @can('Navegar Bateria')
+                                <a href="{{url('Bateria')}}" class="nav-link">Bateria</a>
+                            @endcan
+                            @can('Navegar Lugar')
+                                <a href="{{url('Lugar')}}" class="nav-link">Lugar</a>
+                            @endcan
+                            @can('Navegar Marca')
+                                <a href="{{url('Marca')}}" class="nav-link">Marca</a>
+                            @endcan
+                            @can('Navegar Negocio')
+                                <a href="{{url('Negocio')}}" class="nav-link">Negocio</a>
+                            @endcan
+                            @can('Navegar Pantalla')
+                                <a href="{{url('Pantalla')}}" class="nav-link">Pantalla</a>
+                            @endcan
+                            @can('Navegar Tipo_Reparacion')
+                                <a href="{{url('Tipo_Reparacion')}}" class="nav-link">Tipo de Reparacion</a>
+                            @endcan
+                            @can('Navegar Modelo')
+                                <a href="{{url('Modelo')}}" class="nav-link">Modelo</a>
+                            @endcan
+                            @can('Navegar Detalle_Venta')
+                                <a href="{{url('Detalle_Venta')}}" class="nav-link">Detalle Venta</a>
+                            @endcan
+                            @can('Navegar Especificaciones')
+                                <a href="{{url('Especificaciones')}}" class="nav-link">Especificaciones</a>
+                            @endcan
+                            @can('Navegar Factura')
+                                <a href="{{url('Factura')}}" class="nav-link">Factura</a>
+                            @endcan
+                            @can('Navegar Producto')
+                                <a href="{{url('Producto')}}" class="nav-link">Producto</a>
+                            @endcan
+                            @can('Navegar Reservacion')
+                                <a href="{{url('Reservacion')}}" class="nav-link">Reservacion</a>
+                            @endcan
 
 
                     </ul>
@@ -70,7 +114,7 @@
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Cerrar Seccion') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

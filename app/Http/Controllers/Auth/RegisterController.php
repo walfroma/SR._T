@@ -30,13 +30,25 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/Usuario/edit';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+
+    public function edit($id)
+    {
+        //
+        $Usuario = User::findOrFail($id);
+
+        $roles = Role::all()->pluck('name', 'id');
+
+        return view('Usuario.edit', compact('Usuario', 'roles'));
+    }
+
+
     public function __construct()
     {
         $this->middleware('guest');
@@ -79,8 +91,22 @@ class RegisterController extends Controller
             'Direccion' => Hash::make($data['Direccion']),
         ]);
 
-        $errors = Role::all()->pluck('name', 'id');
+        //$role = Role::get();
 
-        return view('Usuario.create', compact('roles', 'errors') );
+       // return view ('Usuario.creat', compact('role'));
+/*
+        <ul class="list-unstyled">
+    @foreach($role as $role)
+                                <li>
+                                    <label>
+                                        {{Form::checkbos('roles[]', $role->id, null)}}
+                                        {{$role->name}}
+                                        <em>({{$role->descripcion}})</em>
+                                    </label>
+                                </li>
+    @endforeach
+                            </ul>
+
+*/
     }
 }

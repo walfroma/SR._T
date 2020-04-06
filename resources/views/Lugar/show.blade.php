@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    @include('admin.sidebar')
     <div class="container">
-        <div class="row">
-            @include('admin.sidebar')
+        <div class="row justify-content-center">
 
-            <div class="col-md-9">
+            <div class="col-md-auto">
                 <div class="card">
                     <div class="card-header">Lugar</div>
                     <div class="card-body">

@@ -7,11 +7,17 @@ use Illuminate\Http\Request;
 
 class MarcaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
+
+    public function __construct()
+    {
+        $this->middleware(['permission:Creacion de Marca'], ['only' => ['create', 'store']]);
+        $this->middleware(['permission:Navegar Marca'], ['only' => 'index']);
+        $this->middleware(['permission:Edicion de Marca'], ['only' => ['edit', 'update']]);
+        $this->middleware(['permission:Eliminar Marca'], ['only' => 'delete']);
+        $this->middleware(['permission:Ver detalle de Marca'], ['only' => 'show']);
+
+    }
     public function index(Request $id)
     {
         //

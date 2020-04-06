@@ -120,14 +120,18 @@
                         <div class="form-group row">
                             <label for="email" class="col-md-4 col-form-label text-md-right" >{{ __('Rol') }}</label>
                             <div class="col-md-6">
-                            <select class="form-control @error('rol') is-invalid @enderror"  value="{{ old('rol') }}" required autocomplete="Telefono" autofocus name="rol" >
+                            <select class="form-control @error('rol') is-invalid @enderror"  value="{{ old('rol') }}"  autocomplete="Telefono" autofocus name="rol" >
 
                                 @foreach ($errors as $key => $value)
                                     <option value="{{ $value }}">{{ $value }}</option>
                                 @endforeach
                             </select>
                             </div>
+
+
                         </div>
+
+
 
 
 

@@ -5,18 +5,21 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            @include('admin.sidebar')
+        @include('admin.sidebar')
+        <div class="row justify-content-center">
 
-            <div class="col-md-9" >
+
+            <div class="col-md-auto" >
                 <div class="card">
                     <div class="card-header">Lugar</div>
                     <div class="card-body">
-
+                        @can('Creacion de Usuario')
                         <a class="btn btn-primary float-left mr-sm-2" href=" {{ url('Usuario/create') }}">Regresar Usuario</a>
-                        <a href="{{ url('Lugar/create') }}" class="btn btn-success btn-smn  float-left mr-sm-2" title="Crear Lugar">
+                        @endcan
+                        @can('Creacion de Lugar')
+                        <a href="{{ url('Lugar/create') }}" class="btn btn-success btn-smn  float-left mr-sm-2 my-2 my-lg-0" title="Crear Lugar">
                             Agregar Lugar</a>
-
+                            @endcan
 
 
                         <form method="GET" action="{{ url('/Lugar') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -48,7 +51,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th  >Lugar</th>
-                                    <th  >Actiones</th>
+                                    <th class=" form-inline justify-content-center" >Actiones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -57,19 +60,21 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td >{{ $item->Lugar }}</td>
                                         <td>
-                                            <div class="form-inline my-2 my-lg-0 float-right">
+                                            <div class="form-inline my-2 my-lg-0 justify-content-center">
                                                 <div class="input-group">
-                                            <a href="{{ url('/Lugar/' . $item->id) }}" title="Vista Lugar" > <button class="btn btn-info btn-smn form-control mr-sm-3 mt-1" > <i aria-hidden="true"></i>  Vista </button> </a>
-
-                                            <a href="{{ url('/Lugar/' . $item->id . '/edit') }}" title="Editar Lugar"> <button class="btn btn-warning btn-smn mr-sm-3 mt-1"> <i aria-hidden="true"></i>  Editar </button></a>
-
-
-                                            <form method="POST" action="{{ url('/Lugar' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
-                                                {{ method_field('DELETE') }}
-                                                {{ csrf_field() }}
-                                               <a> <button type="submit" class="btn btn-danger btm-sm mt-1  " title="Eliminar Lugar" onclick="return confirm('¿Desea_Borrar_el_Dato?');"> <i  aria-hidden="true"></i>Borrar</button> </a>
-
-                                            </form>
+                                                    @can('Ver detalle de Lugar')
+                                                    <a href="{{ url('/Lugar/' . $item->id) }}" title="Vista Lugar" > <button class="btn btn-info btn-smn form-control mr-sm-3 mt-1" > <i aria-hidden="true"></i>  Vista </button> </a>
+                                                    @endcan
+                                                    @can('Edicion de Lugar')
+                                                    <a href="{{ url('/Lugar/' . $item->id . '/edit') }}" title="Editar Lugar"> <button class="btn btn-warning btn-smn mr-sm-3 mt-1"> <i aria-hidden="true"></i>  Editar </button></a>
+                                                    @endcan
+                                                    @can('Eliminar Lugar')
+                                                            <form method="POST" action="{{ url('/Lugar' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
+                                                                {{ method_field('DELETE') }}
+                                                                {{ csrf_field() }}
+                                                            <a> <button type="submit" class="btn btn-danger btm-sm mt-1  " title="Eliminar Lugar" onclick="return confirm('¿Desea_Borrar_el_Dato?');"> <i  aria-hidden="true"></i>Borrar</button> </a>
+                                                                @endcan
+                                                            </form>
                                                 </div>
                                             </div>
                                         </td>

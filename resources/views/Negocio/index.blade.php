@@ -5,16 +5,17 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            @include('admin.sidebar')
+        <div class="row justify-content-center">
 
-            <div class="col-md-9" >
+
+            <div class="col-md-auto" >
                 <div class="card">
                     <div class="card-header">Negocio</div>
                     <div class="card-body">
-
-                        <a href="{{ url('Negocio/create') }}" class="btn btn-success btn-smn  float-left mr-sm-2" title="Crear Negocio">
+                        @can('Creacion de Negocio')
+                        <a href="{{ url('Negocio/create') }}" class="btn btn-success btn-smn  float-left mr-sm-2 my-2 my-lg-0" title="Crear Negocio">
                             Agregar Negocio</a>
+                        @endcan
 
                         <form method="GET" action="{{ url('/Negocio') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
                             <div class="input-group">
@@ -50,7 +51,7 @@
                                     <th  >Direccion</th>
                                     <th  >Ubicacion</th>
                                     <th  >Correo</th>
-                                    <th  >Acciones</th>
+                                    <th   class=" form-inline justify-content-center">Acciones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -66,19 +67,22 @@
 
 
                                         <td>
-                                            <div class="form-inline my-2 my-lg-0 float-right">
+                                            <div class="form-inline my-2 my-lg-0 justify-content-center">
                                                 <div class="input-group">
+                                                    @can('Ver detalle de Negocio')
                                                     <a href="{{ url('/Negocio/' . $item->id) }}" title="Vista Negocio" > <button class="btn btn-info btn-smn form-control mr-sm-2 mt-2" > <i aria-hidden="true"></i>  Vista </button> </a>
-
+                                                    @endcan
+                                                    @can('Edicion de Negocio')
                                                     <a href="{{ url('/Negocio/' . $item->id . '/edit') }}" title="Editar Negocio"> <button class="btn btn-warning btn-smn mr-sm-2 mt-2"> <i aria-hidden="true"></i>  Editar </button></a>
-
+                                                        @endcan
+                                                        @can('Eliminar Negocio')
 
                                                     <form method="POST" action="{{ url('/Negocio' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
                                                         <button type="submit" class="btn btn-danger btm-smn mt-2" title="Eliminar Negocio" onclick="return confirm('¿Desea_Borrar_el_Dato?');"> <i  aria-hidden="true"></i>Borrar</button>
-
                                                     </form>
+                                                        @endcan
                                                 </div>
                                             </div>
                                         </td>

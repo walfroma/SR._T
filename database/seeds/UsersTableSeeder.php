@@ -13,23 +13,15 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
 
-        //-------Creacion de Usuario con rol de editor ---------------------------
+        //-------Creacion de Usuario con rol de cliente ---------------------------
         $editor = User::create([
-            'name' => 'editor',
-            'email'=> 'editor@gmail.com',
+            'name' => 'cliente',
+            'email'=> 'cliente@gmail.com',
             'password'=>bcrypt(12345678)
         ]);
 
-        $editor->assignRole('editor');
+        $editor->assignRole('cliente');
 
-        //-------Creacion de Usuario con rol de moderador ---------------------------
-        $moderador = User::create([
-            'name' => 'moderador',
-            'email'=> 'moderador@gmail.com',
-            'password'=>bcrypt(12345678)
-        ]);
-
-        $moderador->assignRole('moderador');
 
         //-------Creacion de Usuario con rol de master ---------------------------
         $master = User::create([

@@ -35,19 +35,14 @@ class HomeController extends Controller
 
                 break;
 
-            case 'moderador':
+            case 'cliente':
 
-                $saludo = 'Bienvenido moderador';
+                $saludo = 'Bienvenido cliente';
                 return view('home', compact('saludo'));
 
                 break;
 
-            case 'editor':
-
-                $saludo = 'Bienvenido editor';
-                return view('home', compact('saludo'));
-
-                break;
+         
 
             default:
 

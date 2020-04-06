@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Especificaciones;
 use App\Modelo;
 use App\Marca;
 use App\Negocio;
@@ -101,7 +102,7 @@ class ModeloController extends Controller
     {
         //
         $Marca = DB::table('marcas')
-            ->join('modelos', 'marcas.id' , '=' , 'modelos.users_id')
+            ->join('modelos', 'marcas.id' , '=' , 'modelos.marcas_id')
             ->select('marcas.Marca')
             ->get();
 
@@ -112,7 +113,7 @@ class ModeloController extends Controller
 
 
 
-        return view('Negocio.show', compact('Modelo', 'Marca'));
+        return view('Modelo.show', compact('Modelo', 'Marca'));
     }
 
     /**

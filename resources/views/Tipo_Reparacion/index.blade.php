@@ -4,8 +4,8 @@
 
 @section('content')
     <div class="container">
-        @include('admin.sidebar')
-        <div class="row">
+
+        <div class="row justify-content-center">
 
 
             <div class="col-md-auto" >
@@ -13,10 +13,10 @@
                     <div class="card-header">Tipo Reparacion</div>
                     <div class="card-body">
 
-
-                        <a href="{{ url('Tipo_Reparacion/create') }}" class="btn btn-success btn-smn  float-left mr-sm-2" title="Crear Tipo_Reparacion">
-                            Agregar Tipo Reparacion</a>
-
+                        @can('Creacion de Tipo_Reparacion')
+                        <a href="{{ url('Tipo_Reparacion/create') }}" class="btn btn-success btn-smn  float-left mr-sm-2 my-2 my-lg-0 " title="Crear Tipo_Reparacion">
+                            Agregar Reparacion</a>
+                        @endcan
 
 
                         <form method="GET" action="{{ url('/Tipo_Reparacion') }}" accept-charset="UTF-8" class="form-inline my-2 my-lg-0 float-right" role="search">
@@ -48,7 +48,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th  >Tipo Reparacion</th>
-                                    <th  >Actiones</th>
+                                    <th class=" form-inline justify-content-center" >Actiones</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -57,19 +57,23 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td >{{ $item->Descripcion }}</td>
                                         <td>
-                                            <div class="form-inline my-2 my-lg-0 float-right">
+                                            <div class="form-inline my-2 my-lg-0 justify-content-center">
                                                 <div class="input-group">
-                                                    <a href="{{ url('/Tipo_Reparacion/' . $item->id) }}" title="Vista Tipo Reparacion" > <button class="btn btn-info btn-smn form-control mr-sm-3" > <i aria-hidden="true"></i>  Vista </button> </a>
-
-                                                    <a href="{{ url('/Tipo_Reparacion/' . $item->id . '/edit') }}" title="Editar Tipo Reparacion"> <button class="btn btn-warning btn-smn mr-sm-3"> <i aria-hidden="true"></i>  Editar </button></a>
-
+                                                    @can('Ver detalle de Tipo_Reparacion')
+                                                    <a href="{{ url('/Tipo_Reparacion/' . $item->id) }}" title="Vista Tipo Reparacion" > <button class="btn btn-info btn-smn form-control mr-sm-2 mt-1" > <i aria-hidden="true"></i>  Vista </button> </a>
+                                                    @endcan
+                                                    @can('Edicion de Tipo_Reparacion')
+                                                    <a href="{{ url('/Tipo_Reparacion/' . $item->id . '/edit') }}" title="Editar Tipo Reparacion"> <button class="btn btn-warning btn-smn mr-sm-2 mt-1"> <i aria-hidden="true"></i>  Editar </button></a>
+                                                        @endcan
+                                                        @can('Eliminar Tipo_Reparacion')
 
                                                     <form method="POST" action="{{ url('/Tipo_Reparacion' . '/' . $item->id) }}" accept-charset="UTF-8" style="display:inline">
                                                         {{ method_field('DELETE') }}
                                                         {{ csrf_field() }}
-                                                        <a> <button type="submit" class="btn btn-danger btm-sm   " title="Eliminar Tipo Reparacion" onclick="return confirm('¿Desea_Borrar_el_Dato?');"> <i  aria-hidden="true"></i>Borrar</button> </a>
+                                                        <a> <button type="submit" class="btn btn-danger btm-sm mt-1   " title="Eliminar Tipo Reparacion" onclick="return confirm('¿Desea_Borrar_el_Dato?');"> <i  aria-hidden="true"></i>Borrar</button> </a>
 
                                                     </form>
+                                                        @endcan
                                                 </div>
                                             </div>
                                         </td>

@@ -2,10 +2,9 @@
 
 @section('content')
     <div class="container">
-        <div class="row">
-            @include('admin.sidebar')
+        <div class="row justify-content-center">
 
-            <div class="col-md-9">
+            <div class="col-md-auto">
                 <div class="card">
                     <div class="card-header">Pantalla</div>
                     <div class="card-body">

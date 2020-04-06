@@ -92,7 +92,7 @@ class NegocioController extends Controller
     {
         //
         $Usuario = DB::table('users')
-            ->join('negocios', 'users.id' , '=' , 'negocios.users_id')
+            ->join('negocios', 'negocios.usuarios_id' , '=' , 'users.id')
             ->select('users.Nombre')
         ->get();
 
