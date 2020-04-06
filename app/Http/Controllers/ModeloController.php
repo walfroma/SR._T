@@ -17,6 +17,9 @@ class ModeloController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+
+
     public function index(Request $id)
     {
         //
@@ -37,11 +40,15 @@ class ModeloController extends Controller
 
 
         }
+        $Marca = DB::table('marcas')
+            ->join('modelos', 'marcas.id' , '=' , 'modelos.marcas_id')
+            ->select('marcas.Marca')
+            ->get();
 
 
 
 
-        return view('Modelo.index', compact('Modelo'));
+        return view('Modelo.index', compact('Modelo', 'Marca'));
     }
 
     /**
@@ -88,6 +95,8 @@ class ModeloController extends Controller
         $datosNegocio=request()->except('_token');
         Modelo::insert($datosNegocio);
 
+
+
         //return response()->json($datosLugar);
         return redirect('Modelo')->with('Mensaje','Modelo agregado con Exito');
     }
@@ -110,6 +119,7 @@ class ModeloController extends Controller
 
 
         $Modelo = Modelo::findOrFail($id);
+
 
 
 

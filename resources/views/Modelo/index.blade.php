@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
 
 
-            <div class="col-md-auto" >
+            <div class="col-md-auto " >
                 <div class="card">
                     <div class="card-header">Telefono</div>
                     <div class="card-body">

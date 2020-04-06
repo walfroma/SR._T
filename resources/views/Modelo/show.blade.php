@@ -28,7 +28,7 @@
 
                                 <tr>
 
-                                        <th> Marca </th><td>   {{ $Modelo->marcas_id}} </td>
+                                        <th> Marca </th><td>   {{ $Marca}} </td>
 
                                 </tr>
 
