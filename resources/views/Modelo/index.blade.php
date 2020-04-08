@@ -44,8 +44,9 @@
                                 <thead class="thead-light">
                                 <tr>
                                     <th>No</th>
-                                    <th  >Modelo</th>
                                     <th>Marca</th>
+                                    <th  >Modelo</th>
+
                                     <th  >resolucion</th>
                                     <th  >Cam_Tras</th>
                                     <th  >Cam_Front</th>
@@ -62,8 +63,8 @@
                                 @foreach($Modelo as $item)
                                     <tr >
                                         <td>{{ $loop->iteration }}</td>
-                                        <td >{{ $item->Modelo }}</td>
                                         <td>{{ $item->marcas_id }}</td>
+                                        <td >{{ $item->Modelo }}</td>
                                         <td >{{ $item->resolucion }}</td>
                                         <td >{{ $item->Cam_Tras }}</td>
                                         <td >{{ $item->Cam_Front }}</td>

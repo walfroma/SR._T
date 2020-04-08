@@ -29,8 +29,8 @@
 
                         <div class="form-group">
                             <label for="Descripcion" class="control-label"> {{'Tipo Reparacion'}}</label>
-                            <input type="text" class="form-control {{$errors->has('Descripcion') ? 'is-invalid' :'' }}" name="Descripcion" id="Descripcion" value="{{ isset($TipoReparacion->Descripcion)? $TipoReparacion->Descripcion:''}}">
-
+                            <textarea type="text" class="form-control {{$errors->has('Descripcion') ? 'is-invalid' :'' }}" name="Descripcion" id="Descripcion" value="{{ isset($TipoReparacion->Descripcion)? $TipoReparacion->Descripcion:''}}">
+                            </textarea>
                             {!! $errors->first('Tipo_Reparacion','<div class="invalid-feedback"> :message</div>') !!}
 
                         </div>

@@ -10,7 +10,7 @@
 
             <div class="col-md-auto">
                 <div class="card">
-                    <div class="card-header">{{ $Modo == 'crear' ? 'Agregar Modelo' : 'Modificar Modelo' }}</div>
+                    <div class="card-header">{{ $Modo == 'crear' ? 'Agregar Telefono' : 'Modificar Telefono' }}</div>
                     <div class="card-body">
 
 
@@ -28,10 +28,7 @@
 
 
                         <div class="form-group">
-                            <label for="Modelo" class="control-label"> {{'Modelo'}}</label>
-                            <input type="text" class="form-control {{$errors->has('Modelo') ? 'is-invalid' :'' }}" name="Modelo" id="Modelo" value="{{ isset($Modelo->Modelo)? $Modelo->Modelo:''}}">
-                            <br/>
-                            <label for="usuarios_id" class="control-label"> {{'Usuario'}}</label>
+                            <label for="usuarios_id" class="control-label"> {{'Marca'}}</label>
                             <a class="btn btn-success btn-sm   d-block mx-auto float-right"   data-toggle="modal" data-target="#exampleModalCenter">Crear Marca</a>
                             <select name="marcas_id" id="marcas_id" class="form-control" value="{{ isset($Marca->marcas_id)? $Marca->marcas_id:''}}">
                                 <option> -- Seleccione Opcion --</option>
@@ -41,6 +38,10 @@
                                 @endforeach
                             </select>
                             <br/>
+                            <label for="Modelo" class="control-label"> {{'Modelo'}}</label>
+                            <input type="text" class="form-control {{$errors->has('Modelo') ? 'is-invalid' :'' }}" name="Modelo" id="Modelo" value="{{ isset($Modelo->Modelo)? $Modelo->Modelo:''}}">
+                            <br/>
+
                             <label for="resolucion" class="control-label"> {{'Resolucion'}}</label>
                             <input type="text" class="form-control {{$errors->has('resolucion') ? 'is-invalid' :'' }}" name="resolucion" id="resolucion" value="{{ isset($Modelo->resolucion)? $Modelo->resolucion:''}}">
                             <br/>
@@ -52,7 +53,7 @@
                             <br/>
                             <label for="MicroSD" class="control-label"> {{'MicroSD'}}</label>
                             <select name="MicroSD" id="inputMicroSD" class="form-control">
-                                <option value=""> -- Select One -- </option>
+                                <option value=""> -- Seleccione Opcion --</option>
                                 <option value="Si"> Si </option>
                                 <option value="No"> No</option>
                             </select>
@@ -60,7 +61,7 @@
 
                             <label for="Lector_Huella" class="control-label"> {{'Lector_Huella'}}</label>
                             <select name="Lector_Huella" class="form-control" id="Lector_Huella" value="{{ isset($Modelo->Lector_Huella)? $Modelo->Lector_Huella:''}}">
-                                <option value=""> Seleccion Opcion </option>
+                                <option value=""> -- Seleccione Opcion --</option>
                                 <option value="Si"> Si </option>
                                 <option value="No"> No </option>
                             </select>
@@ -68,7 +69,7 @@
 
                             <label for="SistemaOperativo" class="control-label"> {{'SistemaOperativo'}}</label>
                             <select name="SistemaOperativo" class="form-control" id="MicroSD" value="{{ isset($Modelo->SistemaOperativo)? $Modelo->SistemaOperativo:''}}">
-                                <option value=""> Seleccion Opcion </option>
+                                <option value=""> -- Seleccione Opcion --</option>
                                 <option value="Si"> Android </option>
                                 <option value="No"> IOS </option>
                             </select>
