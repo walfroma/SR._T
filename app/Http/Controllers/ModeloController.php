@@ -85,7 +85,6 @@ class ModeloController extends Controller
             'SistemaOperativo'=>'required|string',
             'Ram'=>'required|string',
             'Almacenamiento'=>'required|string',
-            'Descripcion'=>'required|string'
 
 
         ];
@@ -164,7 +163,6 @@ class ModeloController extends Controller
             'SistemaOperativo'=>'required|string',
             'Ram'=>'required|string',
             'Almacenamiento'=>'required|string',
-            'Descripcion'=>'required|string'
 
         ];
         $Mensaje=["required"=>'El :attribute es requerido'];

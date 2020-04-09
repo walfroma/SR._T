@@ -88,9 +88,9 @@ class ProductoController extends Controller
             'negocios_id'=>'required|integer',
             'modelos_id'=>'required|integer',
             'Categoria'=>'string|max:100',
-            'tipo_reparacions_id'=>'required|integer',
 
-            'Descripcion'=>'string|max:300',
+
+            'Descripcion'=>'max:300',
             'Cantidad'=>'required|integer',
 
 
@@ -176,9 +176,8 @@ class ProductoController extends Controller
             'negocios_id'=>'required|integer',
             'modelos_id'=>'required|integer',
             'Categoria'=>'max:100',
-            'tipo_reparacions_id'=>'integer',
 
-            'Descripcion'=>'string|max:300',
+            'Descripcion'=>'max:300',
             'Cantidad'=>'required|integer',
 
         ];

@@ -44,12 +44,7 @@
                         @can('Navegar usuarios')
                             <a href="{{ url('Usuario')}}" class="nav-link">Usuarios</a>
                         @endcan
-                        @can('Navegar roles')
-                            <a href="{{url('roles')}}" class="nav-link">Roles</a>
-                        @endcan
-                            @can('Navegar Permisos')
-                                <a href="{{url('permissions')}}" class="nav-link">Permisos</a>
-                            @endcan
+
                             @can('Navegar Bateria')
                                 <a href="{{url('Bateria')}}" class="nav-link">Bateria</a>
                             @endcan

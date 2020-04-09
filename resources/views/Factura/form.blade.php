@@ -27,8 +27,8 @@
                             </div>
                             </div>
                             <div class="form-group col-md-auto float-right">
-                                <label for="Lugar" class="control-label float-right"> {{'Fecha'}}</label>
-                                <input type="text" class="form-control float-right " name="Lugar" id="Lugar" value="">
+                                <label for="Fecha" class="control-label float-right"> {{'Fecha'}}</label>
+                                <input type="text" class="form-control float-right " name="Fecha" id="Fecha" value="{{old('Fecha', date('Y-m-d H:i:s'))}}">
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">

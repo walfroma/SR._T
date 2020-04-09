@@ -511,6 +511,8 @@ class RolesAndPermission extends Seeder
         $role->givePermissionTo('Navegar Reservacion');
         $role->givePermissionTo('Ver detalle de Reservacion');
         $role->givePermissionTo('Inicio');
+        $role->givePermissionTo('Creacion de Reservacion');
+
 
 
 

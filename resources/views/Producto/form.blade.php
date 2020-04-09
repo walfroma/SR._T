@@ -39,7 +39,7 @@
                             <br/>
 
                             <label for="Categoria" class="control-label"> {{'Categoria'}}</label>
-                            <select name="Categoria" class="form-control" id="Categoria" value="{{ isset($Producto->Categoria)? $Modelo->Categoria:''}}">
+                            <select name="Categoria" class="form-control" id="Categoria" value="{{ isset($Producto->Categoria)? $Producto->Categoria:''}}">
                                 <option value=""> -- Seleccione Opcion --</option>
                                 <option value="Telefono"> Telefono </option>
                                 <option value="Reparacion"> Reparacion </option>
@@ -77,7 +77,7 @@
                             <br/>
 
                             <label for="Precio" class="control-label"> {{'Precio'}}</label>
-                            <input type="text" class="form-control {{$errors->has('Precio') ? 'is-invalid' :'' }}" name="Precio" id="Precio" value="{{ isset($Producto->Precio)? $Producto->Precio:''}}">
+                            <input type="text" class="form-control {{$errors->has('Precio') ? 'is-invalid' :'' }}" name="Precio" id="Precio" value="Q {{ isset($Producto->Precio)? $Producto->Precio:''}}">
                             <br/>
 
 
@@ -105,7 +105,7 @@
 
 
 
-    <!– Esta es la pantilla  –>
+    <!– Esta es la Modelo  –>
     <form action ='{{ url('Modelo') }}' class="form-horizontal"  method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
 
@@ -206,7 +206,7 @@
     </form>
 
 
-    <!– Esta es la pantilla  –>
+    <!– Esta es Tipo Reparacion  –>
     <form action ='{{ url('Tipo_Reparacion') }}' class="form-horizontal"  method="post" enctype="multipart/form-data">
         {{ csrf_field() }}
 
