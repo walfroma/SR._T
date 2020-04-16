@@ -16,14 +16,19 @@ class CreateFacturasTable extends Migration
         Schema::create('facturas', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('users_id')->unsigned();
+            $table->integer('negocios_id')->unsigned();
             $table->dateTime('Fecha')->nullable();
             $table->float('Descuento')->nullable();
             $table->float('Total')->nullable();
             $table->timestamps();
 
             $table->foreign('users_id')->references('id')->on('users')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
+
+            $table->foreign('negocios_id')->references('id')->on('negocios')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
 
 

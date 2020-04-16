@@ -14,11 +14,26 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+
+
+    <link href="{{asset('select2//dist/css/select2.css')}}" rel="stylesheet"/>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
+{!!Html::script('select2-4.0.3/vendor/jquery-2.1.0.js')!!}
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+    {!!Html::style('css/bootstrap.min.css')!!}
+    {!!Html::style('css/navbar-fixed-top.css')!!}
+    {!!Html::script('js/bootstrap.min.js')!!}
+    {!!Html::script('select2-4.0.3/dist/js/select2.js')!!}
+    {!!Html::style('select2-4.0.3/dist/css/select2.css',['rel'=>"stylesheet"])!!}
+
+
 </head>
+
+
 <body>
     <div id="app"  >
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm ">
@@ -125,7 +140,23 @@
 
         <main class="py-4">
             @yield('content')
+
+
+
+
         </main>
     </div>
+
+
+
+
+
+    <script src="{{asset('select2//dist/js/select2.js')}}"></script>
+
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('jquery/dist/jquery.js')}}"></script>
+
+
+@yield('select2')
 </body>
 </html>

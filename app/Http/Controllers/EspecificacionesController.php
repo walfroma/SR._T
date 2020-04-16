@@ -7,6 +7,7 @@ use App\Especificaciones;
 use App\Modelo;
 use App\Pantalla;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class EspecificacionesController extends Controller
 {
@@ -23,12 +24,25 @@ class EspecificacionesController extends Controller
         $perPage = 20;
 
         if (!empty($keyword)) {
-            $Especificaciones = Especificaciones::where('Procesador', 'LIKE', "%$keyword%")
-                ->orWhere('id', 'LIKE', "%$keyword%")->orWhere('modelos_id', 'LIKE', "%$keyword%")
-                ->orWhere('pantallas_id', 'LIKE', "%$keyword%")->orWhere('baterias_id', 'LIKE', "%$keyword%")
+            $Especificaciones = DB::table('especificaciones')
+                ->join('modelos', 'modelos.id', '=', 'especificaciones.modelos_id')
+                ->join('baterias', 'baterias.id', '=', 'especificaciones.baterias_id')
+                ->join('pantallas', 'pantallas.id', '=', 'especificaciones.pantallas_id')
+
+                ->where('Modelo', 'LIKE', "%$keyword%")->orWhere('Pantalla', 'LIKE', "%$keyword%")
+                ->orWhere('Bateria', 'LIKE', "%$keyword%")
+                ->select(  'especificaciones.*', 'baterias.Bateria', 'pantallas.Pantalla', 'modelos.Modelo')
                 ->latest()->paginate($perPage);
+
         } else {
-            $Especificaciones = Especificaciones::latest()->paginate($perPage);
+           // $Especificaciones = Especificaciones::latest()->paginate($perPage);
+            $Especificaciones = DB::table('especificaciones')
+                ->join('baterias', 'baterias.id', '=', 'especificaciones.baterias_id')
+                ->join('pantallas', 'pantallas.id', '=', 'especificaciones.pantallas_id')
+                ->join('modelos', 'modelos.id', '=', 'especificaciones.modelos_id')
+                ->select('especificaciones.*', 'baterias.Bateria', 'pantallas.Pantalla', 'modelos.Modelo')
+                ->paginate($perPage);
+
 
 
         }

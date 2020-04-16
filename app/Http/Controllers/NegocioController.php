@@ -23,14 +23,19 @@ class NegocioController extends Controller
         $perPage = 20;
 
         if (!empty($keyword)) {
-            $Negocio = Negocio::where('Negocio', 'LIKE', "%$keyword%")
-                ->orWhere('id', 'LIKE', "%$keyword%")->orWhere('Telefono', 'LIKE', "%$keyword%")
-                ->orWhere('Direccion', 'LIKE', "%$keyword%")->orWhere('Ubicacion', 'LIKE', "%$keyword%")
-                ->orWhere('Correo', 'LIKE', "%$keyword%")->orWhere('users_id', 'LIKE', "%$keyword%")
+            $Negocio = DB::table('negocios')
+               ->join('users', 'users.id', '=', 'negocios.usuarios_id')
+                ->where('Nombre', 'LIKE', "%$keyword%")->orWhere('Negocio', 'LIKE', "%$keyword%")
+                ->orWhere('Telefono', 'LIKE', "%$keyword%")->orWhere('Direccion', 'LIKE', "%$keyword%")
+                ->orWhere('Ubicacion', 'LIKE', "%$keyword%")->orWhere('Correo', 'LIKE', "%$keyword%")
+                ->orWhere('Nombre', 'LIKE', "%$keyword%")
+               ->select('negocios.*', 'users.Nombre')
                 ->latest()->paginate($perPage);
         } else {
-            $Negocio = Negocio::latest()->paginate($perPage);
-
+            $Negocio = DB::table('negocios')
+                ->join('users', 'users.id', '=', 'negocios.usuarios_id')
+                ->select('negocios.*', 'users.Nombre', 'users.Apellido')
+                ->paginate($perPage);
 
         }
 
@@ -50,7 +55,16 @@ class NegocioController extends Controller
         //
         $Negocio = Negocio::all();
         $Usuario = User::all();
-        return view('Negocio.create',  compact('Negocio','Usuario'));
+        // $Usuario = User::pluck('Nombre', 'Apellido', 'id')->toArray();
+        /*<select name="usuarios_id" id="user" class="form-control" value="{{ isset($Usuario->usuarios_id)? $Usuario->usuarios_id:''}}">
+                                <option> -- Seleccione Opcion --</option>
+    @foreach($Usuario as $key =>$Usuario )
+
+                                    <option value="{{$key}} "> {{$Usuario}}  </option>
+    @endforeach
+                            </select>
+        */
+        return view('Negocio.create', compact('Negocio','Usuario'));
 
     }
 

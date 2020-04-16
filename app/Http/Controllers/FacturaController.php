@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\DetalleVenta;
 use App\Factura;
+use App\Modelo;
+use App\Negocio;
+use App\Producto;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FacturaController extends Controller
 {
@@ -33,61 +39,47 @@ class FacturaController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
-        return view('Factura.create' );
+        $Factura = Factura::all();
+        $Detalle_Venta = DetalleVenta::all();
+        $Negocio = Negocio::all();
+        $Usuario = User::all();
+        $productos = DB::table('productos as p')
+            ->select(DB::raw('CONCAT (p.id, " - " , p.modelos_id) as productos'), 'p.id', 'p.modelos_id', 'p.Stock', 'p.Precio')
+            ->where ('p.estado', '=', 'Activo')
+            ->where('p.Stock', '>', '0')
+            ->get();
+        $Modelo = Modelo::all();
+        return view('Factura.create', ['productos' => $productos], compact('Factura', 'Negocio', 'Usuario', 'Detalle_Venta', 'productos', 'Modelo'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+
+
+
+public function store(Request $request)
     {
-        //$datosFactura=request()->all();
-        //Para requerir y validar datos
-        $campos=[
-            'Factura'=>'required|string|max:100'
-        ];
-        $Mensaje=["required"=>'El :attribute es requerido'];
-        $this->validate($request,$campos,$Mensaje);
+       try{
+           DB::biginTransaction();
 
-        $datosFactura=request()->except('_token');
-        Factura::insert($datosFactura);
+           $venta = new Factura()
 
-        //return response()->json($datosFactura);
-        return redirect('Factura')->with('Mensaje','Factura agregado con Exito');
+
+       }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Factura  $Factura
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
-        $Factura = Factura::findOrFail($id);
 
-        return view('Factura.show', compact('Factura'));
+
+        return view('Factura.show');
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Factura  $Factura
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         //
@@ -96,30 +88,10 @@ class FacturaController extends Controller
         return view('Factura.edit',compact('Factura'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Factura  $Factura
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
-        //
-        //Para requerir y validar datos
-        $campos=[
-            'Factura'=>'required|string|max:100'
-        ];
-        $Mensaje=["required"=>'El :attribute es requerido'];
-        $this->validate($request,$campos,$Mensaje);
 
-
-        $datosFactura=request()->except(['_token','_method']);
-        Factura::where('id','=',$id)->update($datosFactura);
-
-        //$Factura = Factura::findOrFail($id);
-        //return view('Factura.edit',compact('Factura'));
-        return redirect('Factura')->with('Mensaje','Factura modificado con Exito');
     }
 
     /**

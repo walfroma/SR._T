@@ -70,8 +70,8 @@
                                             <td >{{ $item->Direccion }}</td>
                                             <td >{{ $item->roles->implode('name',',') }}</td>
                                             <td>
-                                                <div class="form-inline my-2 my-lg-0 float-right">
-                                                    <div class="input-group">
+                                                <div class="form-inline my-2 my-lg-0 ">
+                                                    <div class="input-group justify-content-center">
                                                         @can('Ver detalle de usuario')
                                                             <a href="{{ url('/Usuario/' . $item->id) }}" title="Vista Lugar" > <button class="btn btn-info btn-smn form-control mr-sm-3 mt-1" > <i aria-hidden="true"></i>  Vista </button> </a>
                                                         @endcan

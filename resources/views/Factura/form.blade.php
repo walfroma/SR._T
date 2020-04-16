@@ -32,8 +32,16 @@
                             </div>
                             <div class="form-row">
                                 <div class="form-group col-md-6">
-                                    <label for="Lugar" class="control-label"> {{'Nombre del Negocio'}}</label>
-                                    <input type="text" class="form-control " name="Lugar" id="Lugar" value="">
+                                    <label for="Negocio" class="control-label float-right"> {{'Negocio'}}</label>
+                                    <select name="negocios_id" id="negocios_id" class="form-control" value="{{ isset($Negocio->negocios_id)? $Negocio->negocios_id:''}}">
+                                        <option class="form-inline justify-content-center" > Seleccione Usuario </option>
+
+                                        @foreach($Negocio as $Negocio )
+
+
+                                            <option value="{{$Negocio['id']}} "> {{$Negocio['Negocio']}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
 
                             </div>
@@ -41,16 +49,45 @@
                             <div class="row">
                                 <div class="col">
                                     <label for="inputEmail4" class="">Cliente <a class="btn btn-success btn-sm   d-block mx-auto float-right"   data-toggle="modal" data-target="#Cliente">Agregar Cliente</a></label>
-
-                                    <input type="text" class="form-control  "  id="inputEmail4" placeholder="Nombre del Cliente">
+                                    <select name="usuarios_id" id="usuarios_id" class="form-control" value="{{ isset($Usuario->usuarios_id)? $Usuario->usuarios_id:''}}">
+                                        <option class="form-inline justify-content-center" > Seleccione Cliente </option>
+                                        @foreach($Usuario as $Usuario )
+                                            <option value="{{$Usuario['id']}} ">{{$Usuario['id']}} / {{$Usuario['Nombre']}} {{$Usuario['Apellido']}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col mt-1">
                                     <label for="Lugar" class="control-label"> {{'Direccion'}}</label>
-                                    <input type="text" class="form-control " name="Lugar" id="Lugar" value="">
+                                    <input type="text" class="form-control " name="Direccion" id="Direccion" value="">
+                                </div>
+                            </div>
+                            <br/>
+
+                            <div class="row">
+                                <div class="col">
+                                    <label for="productos_id" class="">Producto </label>
+                                    <select name="productos_id" id="productos_id" class="form-control" data-Live-search="true" value="{{ isset($productos->productos_id)? $productos->productos_id:''}}">
+                                        <option class="form-inline justify-content-center" > Seleccione Producto  </option>
+                                        @foreach($productos as $productos )
+                                            <option value="{{$productos ->id}}_{{$productos->Stock}}_{{$productos->Precio}} ">{{$productos->modelos_id}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="col mt-1">
-                                    <label for="inputPassword4">NIT</label>
-                                    <input type="text" class="form-control" id="inputPassword4" placeholder="No. Nit">
+                                    <label for="Stock" class="control-label"> {{'Stock'}}</label>
+                                    <input type="text" class="form-control " name="Stock" id="Stock" value="" readonly>
+                                </div>
+                                <div class="col mt-1">
+                                    <label for="inputPassword4">Precio Venta</label>
+                                    <input type="text" class="form-control"  name="Precio" id="Precio" readonly >
+                                </div>
+                                <div class="col mt-1">
+                                    <label for="inputPassword4">Descuento</label>
+                                    <input type="text" class="form-control" id="Descuento" name="Descuento" placeholder="Descuento">
+                                </div>
+                                <div class="col mt-1">
+                                    <label for="Cantidad">Cantidad</label>
+                                    <input type="text" class="form-control" id="Cantidad" name="Cantidad" placeholder="Cantidad">
                                 </div>
                             </div>
                             <br/>
@@ -67,6 +104,7 @@
                                         <th  >Cantidad</th>
                                         <th  >Producto / Servicio</th>
                                         <th  >Precio c/u</th>
+                                        <th  >Descuento</th>
                                         <th  >Subtotal</th>
                                         <th  class=" form-inline justify-content-center" >Acciones</th>
                                     </tr>
@@ -74,6 +112,7 @@
                                     <tbody>
 
                                         <tr>
+                                            <td>f</td>
                                             <td>f</td>
                                             <td>f</td>
                                             <td>f</td>
@@ -102,24 +141,17 @@
 
                             </div>
 
-                            <div class="form-group col-md-auto float-right">
-                                <label for="Lugar" class="control-label float-right"> {{'Descuento'}}</label>
-                                <input type="text" class="form-control float-right " name="Lugar" id="Lugar" value="">
-                            </div>
-                            <br/>
-                            <br/>
-                            <br/>
-                            <br/>
 
 
                             <div class="form-group col-md-auto float-right">
-                                <label for="Lugar" class="control-label float-right"> {{'Total'}}</label>
-                                <input type="text" class="form-control float-right " name="Lugar" id="Lugar" value="">
+                                <label for="Total" class="control-label float-right"> {{'Total'}}</label>
+                                <input type="text" class="form-control float-right " name="Total" id="Total" value="">
                             </div>
 
 
                         <div class=" form-inline mb-2 mb-lg-0 col v-center">
                             <div class="input-group">
+                                <input name="_token" value="{{csrf_token()}}" type="hidden"></input>
                                 <input type="submit" class="btn btn-success  mr-sm-3 d-block mx-auto " value="{{ $Modo == 'crear' ? 'Agregar' : 'Editar' }}">
 
                                 <a class="btn btn-primary mr-sm-3  d-block mx-auto" href=" {{ url('Producto') }}">Regrasar Producto</a>
@@ -130,7 +162,7 @@
             </div>
         </div>
     </div>
-
+    {{Form::close()}}
 
 
     <!– Esta es la pantilla  –>
@@ -225,5 +257,17 @@
         </div>
 
     </form>
+
+    <script type="text/javascript">
+
+        $("#negocios_id").select2();
+
+        $("#usuarios_id").select2();
+
+        $("#productos_id").select2();
+
+
+
+    </script>
 
 @endsection

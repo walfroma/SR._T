@@ -3,6 +3,8 @@
 
 @section('content')
 
+
+
     <div class="container">
 
         <div class="row justify-content-center">
@@ -44,16 +46,16 @@
                             <input type="text" class="form-control {{$errors->has('Correo') ? 'is-invalid' :'' }}" name="Correo" id="Correo" value="{{ isset($Negocio->Correo)? $Negocio->Correo:''}}">
                             <br/>
                             <label for="usuarios_id" class="control-label"> {{'Usuario'}}</label>
+                            <br/>
                             <select name="usuarios_id" id="usuarios_id" class="form-control" value="{{ isset($Usuario->usuarios_id)? $Usuario->usuarios_id:''}}">
-                                <option> -- Seleccione Opcion --</option>
+                                <option class="form-inline justify-content-center" > Seleccione Usuario </option>
+
                                 @foreach($Usuario as $Usuario )
+
 
                                     <option value="{{$Usuario['id']}} "> {{$Usuario['Nombre']}}  {{$Usuario['Apellido']}}</option>
                                 @endforeach
                             </select>
-
-                            <br/>
-
 
 
 
@@ -75,6 +77,16 @@
         </div>
     </div>
 
+
+
+
+    <script type="text/javascript">
+
+        $("#usuarios_id").select2();
+
+
+
+    </script>
 
 
 @endsection

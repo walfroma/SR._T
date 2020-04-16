@@ -48,6 +48,7 @@
                                     <th  >Descripcion</th>
                                     <th  >Cantidad</th>
                                     <th  >Precio</th>
+                                    <th  >Estado</th>
                                     <th   class=" form-inline justify-content-center">Acciones</th>
                                 </tr>
                                 </thead>
@@ -55,17 +56,18 @@
                                 @foreach($Producto as $item)
                                     <tr >
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->negocios_id }}</td>
+                                        <td>{{ $item->Negocio }}</td>
                                         <td >{{ $item->Categoria }}</td>
-                                        <td >{{ $item->modelos_id }}</td>
-                                        <td >{{ $item->tipo_reparacions_id }}</td>
+                                        <td >{{ $item->Modelo }}</td>
                                         <td >{{ $item->Descripcion }}</td>
-                                        <td >{{ $item->Cantidad }}</td>
-                                        <td >{{ $item->Precio }}</td>
+                                        <td >{{ $item->Descripcion2 }}</td>
+                                        <td >{{ $item->Stock }}</td>
+                                        <td >Q{{ $item->Precio }}</td>
+                                        <td >{{ $item->estado }}</td>
 
                                         <td>
-                                            <div class="form-inline my-2 my-lg-0 justify-content-center">
-                                                <div class="input-group">
+                                            <div class="form-inline my-2 my-lg-0 ">
+                                                <div class="input-group justify-content-center">
                                                     @can('Ver detalle de Producto')
                                                         <a href="{{ url('/Producto/' . $item->id) }}" title="Vista Producto" > <button class="btn btn-info btn-smn form-control mr-sm-2 mt-2" > <i aria-hidden="true"></i>  Vista </button> </a>
                                                     @endcan

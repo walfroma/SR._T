@@ -22,10 +22,6 @@
                                 <input type="text" name="email" required class="form-control">
                             </div>
                             <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password" name="password" required class="form-control">
-                            </div>
-                            <div class="form-group">
                                 <label for="Nombre">Nombres</label>
                                 <input type="text" name="Nombre" required class="form-control">
                             </div>

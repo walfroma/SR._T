@@ -28,27 +28,31 @@ class ModeloController extends Controller
         $perPage = 20;
 
         if (!empty($keyword)) {
-            $Modelo = Negocio::where('Modelo', 'LIKE', "%$keyword%")
+            $Modelo = DB::table('modelos')
+                ->join('marcas', 'marcas.id', '=', 'modelos.marcas_id')
+                ->where('Modelo', 'LIKE', "%$keyword%")
                 ->orWhere('resolucion', 'LIKE', "%$keyword%")->orWhere('Cam_Tras', 'LIKE', "%$keyword%")
                 ->orWhere('Cam_Front', 'LIKE', "%$keyword%")->orWhere('MicroSD', 'LIKE', "%$keyword%")
                 ->orWhere('Lector_Huella', 'LIKE', "%$keyword%")->orWhere('SistemaOperativo', 'LIKE', "%$keyword%")
                 ->orWhere('Ram', 'LIKE', "%$keyword%")->orWhere('Almacenamiento', 'LIKE', "%$keyword%")
                 ->orWhere('Descripcion', 'LIKE', "%$keyword%")
+                ->orWhere('Marca', 'LIKE', "%$keyword%")
+                ->select('modelos.*', 'marcas.Marca')
                 ->latest()->paginate($perPage);
         } else {
-            $Modelo = Modelo::latest()->paginate($perPage);
+            $Modelo = DB::table('modelos')
+                ->join('marcas', 'marcas.id', '=', 'modelos.marcas_id')
+                ->select('modelos.*', 'marcas.Marca')
+                ->paginate($perPage);
 
 
         }
-        $Marca = DB::table('marcas')
-            ->join('modelos', 'marcas.id' , '=' , 'modelos.marcas_id')
-            ->select('marcas.Marca')
-            ->get();
 
 
 
 
-        return view('Modelo.index', compact('Modelo', 'Marca'));
+
+        return view('Modelo.index', compact('Modelo'));
     }
 
     /**
@@ -108,13 +112,10 @@ class ModeloController extends Controller
      */
     public function show($id)
     {
-        //
-        $Marca = DB::table('marcas')
-            ->join('modelos', 'marcas.id' , '=' , 'modelos.marcas_id')
-            ->select('marcas.Marca')
+        $Marca = DB::table('modelos')
+            ->join('marcas', 'marcas.id', '=', 'modelos.marcas_id')
+            ->select('modelos.*', 'marcas.Marca')
             ->get();
-
-
 
 
         $Modelo = Modelo::findOrFail($id);

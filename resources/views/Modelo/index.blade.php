@@ -63,7 +63,7 @@
                                 @foreach($Modelo as $item)
                                     <tr >
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->marcas_id }}</td>
+                                        <td>{{ $item->Marca }}</td>
                                         <td >{{ $item->Modelo }}</td>
                                         <td >{{ $item->resolucion }}</td>
                                         <td >{{ $item->Cam_Tras }}</td>
@@ -79,8 +79,8 @@
 
 
                                         <td>
-                                            <div class="form-inline my-2 my-lg-0 justify-content-center">
-                                                <div class="input-group">
+                                            <div class="form-inline my-2 my-lg-0 ">
+                                                <div class="input-group justify-content-center">
                                                     @can('Ver detalle de Modelo')
                                                     <a href="{{ url('/Modelo/' . $item->id) }}" title="Vista Modelo" > <button class="btn btn-info btn-smn form-control mr-sm-2 mt-2" > <i aria-hidden="true"></i>  Vista </button> </a>
                                                     @endcan

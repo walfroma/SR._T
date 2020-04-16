@@ -28,7 +28,7 @@
 
                                 <tr>
 
-                                        <th> Marca </th><td>   {{ $Marca}} </td>
+                                        <th> Marca </th><td>   {{ $Modelo->Marca}} </td>
 
                                 </tr>
 

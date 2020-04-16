@@ -15,6 +15,8 @@
                         @can('Creacion de Pantalla')
                         <a href="{{ url('Pantalla/create') }}" class="btn btn-success btn-smn  float-left mr-sm-2 my-2 my-lg-0 " title="Crear tamaño de Pantalla">
                             Agregar Pantalla</a>
+                                <a href="{{ url('Especificaciones/create') }}" class="btn btn-info btn-smn  float-left mr-sm-2 my-2 my-lg-0 " title="Regresar Especificaciones">
+                                    Regresar Especificaciones</a>
                         @endcan
 
 
@@ -56,8 +58,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td >{{ $item->Pantalla }}</td>
                                         <td>
-                                            <div class="form-inline my-2 my-lg-0 justify-content-center">
-                                                <div class="input-group">
+                                            <div class="form-inline my-2 my-lg-0 ">
+                                                <div class="input-group justify-content-center">
                                                     @can('Ver detalle de Pantalla')
                                                     <a href="{{ url('/Pantalla/' . $item->id) }}" title="Vista del tamaño de la Pantalla" > <button class="btn btn-info btn-smn form-control mr-sm-2 mt-1" > <i aria-hidden="true"></i>  Vista </button> </a>
                                                     @endcan

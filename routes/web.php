@@ -20,6 +20,8 @@ Route::get('/', function () {
 //Route::get('/Lugar', 'LugarController@index');
 //Route::get('/Lugar/create', 'LugarController@create');
 
+
+
 Route::group(['middleware' => ['role:master|cliente']], function (){
     Route::resource('Lugar', 'LugarController') /*->middleware('auth')*/;
 });

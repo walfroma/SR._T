@@ -25,37 +25,30 @@ class ProductoController extends Controller
         $perPage = 20;
 
         if (!empty($keyword)) {
-            $Producto = Negocio::where('Categoria', 'LIKE', "%$keyword%")
-                ->orWhere('modelos_id', 'LIKE', "%$keyword%")->orWhere('tipo_reparacion_id', 'LIKE', "%$keyword%")
-                ->orWhere('Descripcion', 'LIKE', "%$keyword%")->orWhere('Cantidad', 'LIKE', "%$keyword%")
-                ->orWhere('Precio', 'LIKE', "%$keyword%")
+            $Producto = DB::table('productos')
+                ->join('negocios', 'negocios.id', '=', 'productos.negocios_id')
+                ->join('modelos', 'modelos.id', '=', 'productos.modelos_id')
+                ->join('tipo_reparacions', 'tipo_reparacions.id', '=', 'productos.tipo_reparacions_id')
+
+                ->where('Negocio', 'LIKE', "%$keyword%")->orWhere('Modelo', 'LIKE', "%$keyword%")
+              //  ->orWhere('Descripcion', 'LIKE', "%$keyword%")
+                ->orWhere('Descripcion2', 'LIKE', "%$keyword%")->orWhere('Stock', 'LIKE', "%$keyword%")
+                ->orWhere('Precio', 'LIKE', "%$keyword%")->orWhere('Categoria', 'LIKE', "%$keyword%")
+                ->select('productos.*', 'negocios.Negocio','modelos.Modelo', 'tipo_reparacions.Descripcion')
                 ->latest()->paginate($perPage);
         } else {
-            $Producto = Producto::latest()->paginate($perPage);
-
+            //$Producto = Producto::latest()->paginate($perPage);
+            $Producto = DB::table('productos')
+                ->join('negocios', 'negocios.id', '=', 'productos.negocios_id')
+                ->join('modelos', 'modelos.id', '=', 'productos.modelos_id')
+                ->join('tipo_reparacions', 'tipo_reparacions.id', '=', 'productos.tipo_reparacions_id')
+                ->select('productos.*', 'negocios.Negocio', 'modelos.Modelo', 'tipo_reparacions.Descripcion')
+                ->paginate($perPage);
 
         }
-        $Negocio = DB::table('negocios')
-            ->join('productos', 'negocios.id' , '=' , 'productos.negocios_id')
-            ->select('negocios.Negocio')
-            ->get();
-
-        $Modelo = DB::table('modelos')
-            ->join('productos', 'modelos.id' , '=' , 'productos.modelos_id')
-            ->select('modelos.Modelo')
-            ->get();
-
-        $Tipo_Reparacion = DB::table('tipo_reparacions')
-            ->join('productos', 'tipo_reparacions.id' , '=' , 'productos.tipo_reparacions_id')
-            ->select('tipo_reparacions.Descripcion')
-            ->get();
 
 
-
-
-
-
-        return view('Producto.index', compact('Producto', 'Tipo_Reparacion', 'Modelo', 'Negocio'));
+        return view('Producto.index', compact('Producto'));
     }
 
     /**
@@ -84,27 +77,23 @@ class ProductoController extends Controller
     public function store(Request $request)
     {
         //
-        $campos=[
-            'negocios_id'=>'required|integer',
-            'modelos_id'=>'required|integer',
-            'Categoria'=>'string|max:100',
+        $Producto = new Producto;
+        $Producto -> id = $request -> get('id');
+        $Producto -> negocios_id = $request -> get('negocios_id');
+        $Producto -> Categoria = $request -> get('Categoria');
+        $Producto -> modelos_id = $request -> get('modelos_id');
+        $Producto -> tipo_reparacions_id = $request -> get('tipo_reparacions_id');
+        $Producto -> Descripcion2 = $request -> get('Descripcion2');
+        $Producto -> Stock = $request -> get('Stock');
+        $Producto -> Precio = $request -> get('Precio');
+        $Producto -> estado ='Activo';
 
-
-            'Descripcion'=>'max:300',
-            'Cantidad'=>'required|integer',
-
-
-        ];
-        $Mensaje=["required"=>'El :attribute es requerido'];
-        $this->validate($request,$campos,$Mensaje);
-
-        $datosProducto=request()->except('_token');
-        Producto::insert($datosProducto);
+        $Producto->save();
 
 
 
-        //return response()->json($datosLugar);
-        return redirect('Producto')->with('Mensaje','Producto agregado con Exito');
+
+        return redirect('Producto');
     }
 
     /**
@@ -154,10 +143,11 @@ class ProductoController extends Controller
 
 
         $Producto = Producto::findOrFail($id);
-        $Negocio = Negocio::findOrFail($id);
-        $Modelo = Modelo::findOrFail($id);
-        $Marca = Marca::findOrFail($id);
-        $Tipo_Reparacion = TipoReparacion::findOrFail($id);
+        $Negocio = Negocio::all();
+        $Modelo = Modelo::all();
+        $Marca = Marca::all();
+
+        $Tipo_Reparacion = TipoReparacion::all();
 
         return view('Producto.edit',compact('Producto', 'Negocio', 'Modelo', 'Tipo_Reparacion', 'Marca'));
     }
@@ -172,25 +162,18 @@ class ProductoController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $campos=[
-            'negocios_id'=>'required|integer',
-            'modelos_id'=>'required|integer',
-            'Categoria'=>'max:100',
+        $Producto = Producto::findOrFail($id);
+        $Producto -> negocios_id = $request -> get('negocios_id');
+        $Producto -> Categoria = $request -> get('Categoria');
+        $Producto -> modelos_id = $request -> get('modelos_id');
+        $Producto -> tipo_reparacions_id = $request -> get('tipo_reparacions_id');
+        $Producto -> Descripcion2 = $request -> get('Descripcion2');
+        $Producto -> Stock = $request -> get('Stock');
+        $Producto -> Precio = $request -> get('Precio');
+        $Producto -> estado ='Activo';
 
-            'Descripcion'=>'max:300',
-            'Cantidad'=>'required|integer',
-
-        ];
-        $Mensaje=["required"=>'El :attribute es requerido'];
-        $this->validate($request,$campos,$Mensaje);
-
-
-        $datosProducto=request()->except(['_token','_method']);
-        Producto::where('id','=',$id)->update($datosProducto);
-
-        //$Lugar = Lugar::findOrFail($id);
-        //return view('Lugar.edit',compact('Lugar'));
-        return redirect('Producto')->with('Mensaje','Producto modificado con Exito');
+        $Producto->update();
+        return redirect('Producto');
     }
 
     /**
@@ -202,8 +185,10 @@ class ProductoController extends Controller
     public function destroy($id)
     {
         //
-        Producto::destroy($id);
-        //return redirect('Lugar');
+
+        $Producto = Producto::findOrFail($id);
+        $Producto ->estado = "Inactivo";
+        $Producto ->update();
         return redirect('Producto')->with('Mensaje','Producto eliminado con Exito');
     }
 }

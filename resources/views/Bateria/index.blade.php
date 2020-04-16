@@ -14,6 +14,8 @@
                         @can('Creacion de Marca')
                         <a href="{{ url('Bateria/create') }}" class="btn btn-success btn-smn  float-left mr-sm-2 my-2 my-lg-0" title="Crear tamaño de Bateria">
                             Agregar  Bateria</a>
+                            <a href="{{ url('Especificaciones/create') }}" class="btn btn-info btn-smn  float-left mr-sm-2 my-2 my-lg-0 " title="Regresar Especificaciones">
+                                Regresar Especificaciones</a>
                         @endcan
 
 

@@ -57,8 +57,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td >{{ $item->Descripcion }}</td>
                                         <td>
-                                            <div class="form-inline my-2 my-lg-0 justify-content-center">
-                                                <div class="input-group">
+                                            <div class="form-inline my-2 my-lg-0 ">
+                                                <div class="input-group justify-content-center">
                                                     @can('Ver detalle de Tipo_Reparacion')
                                                     <a href="{{ url('/Tipo_Reparacion/' . $item->id) }}" title="Vista Tipo Reparacion" > <button class="btn btn-info btn-smn form-control mr-sm-2 mt-1" > <i aria-hidden="true"></i>  Vista </button> </a>
                                                     @endcan

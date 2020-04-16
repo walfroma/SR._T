@@ -63,8 +63,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td >{{ $item->Factura }}</td>
                                         <td>
-                                            <div class="form-inline my-2 my-lg-0 justify-content-center">
-                                                <div class="input-group">
+                                            <div class="form-inline my-2 my-lg-0 ">
+                                                <div class="input-group justify-content-center">
                                                     @can('Ver detalle de Factura')
                                                         <a href="{{ url('/Factura/' . $item->id) }}" title="Vista Factura" > <button class="btn btn-info btn-smn form-control mr-sm-3 mt-1" > <i aria-hidden="true"></i>  Vista </button> </a>
                                                     @endcan

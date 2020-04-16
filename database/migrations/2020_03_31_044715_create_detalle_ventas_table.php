@@ -22,12 +22,12 @@ class CreateDetalleVentasTable extends Migration
             $table->timestamps();
 
             $table->foreign('facturas_id')->references('id')->on('facturas')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
             $table->foreign('productos_id')->references('id')->on('productos')
-                ->onDelete('no action')
-                ->onUpdate('no action');
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
 
         });
     }

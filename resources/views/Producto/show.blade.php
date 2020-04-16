@@ -41,10 +41,10 @@
                                 </tr>
 
                                 <tr>
-                                    <th> Descripcion </th><td> {{ $Producto->Descripcion }} </td>
+                                    <th> Descripcion </th><td> {{ $Producto->Descripcion2 }} </td>
                                 </tr>
                                 <tr>
-                                    <th> Cantidad </th><td> {{ $Producto->Cantidad }} </td>
+                                    <th> Cantidad </th><td> {{ $Producto->Stock }} </td>
                                 </tr>
                                 <tr>
                                     <th> Precio </th><td> {{ $Producto->Precio }} </td>

@@ -19,9 +19,10 @@ class CreateProductosTable extends Migration
             $table->string('Categoria', 45)->nullable();
             $table->integer('modelos_id')->unsigned();
             $table->integer('tipo_reparacions_id')->nullable()->unsigned();
-            $table->string('Descripcion')->nullable();
-            $table->integer('Cantidad')->nullable();
+            $table->string('Descripcion2')->nullable();
+            $table->integer('Stock')->nullable();
             $table->float('Precio')->nullable();
+            $table->string('estado', 45);
             $table->timestamps();
 
             $table->foreign('negocios_id')->references('id')->on('negocios')

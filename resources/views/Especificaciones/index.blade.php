@@ -54,14 +54,14 @@
                                 @foreach($Especificaciones as $item)
                                     <tr >
                                         <td>{{ $loop->iteration }}</td>
-                                        <td >{{ $item->modelos_id }}</td>
-                                        <td >{{ $item->pantallas_id }}</td>
-                                        <td >{{ $item->baterias_id }}</td>
+                                        <td >{{ $item->Modelo }}</td>
+                                        <td >{{ $item->Pantalla }}</td>
+                                        <td >{{ $item->Bateria }}</td>
 
 
                                         <td>
-                                            <div class="form-inline my-2 my-lg-0 justify-content-center">
-                                                <div class="input-group">
+                                            <div class="form-inline my-2 my-lg-0 ">
+                                                <div class="input-group justify-content-center">
                                                     @can('Ver detalle de Especificaciones')
                                                     <a href="{{ url('/Especificaciones/' . $item->id) }}" title="Vista Especificaciones" > <button class="btn btn-info btn-smn form-control mr-sm-2 mt-2" > <i aria-hidden="true"></i>  Vista </button> </a>
                                                     @endcan

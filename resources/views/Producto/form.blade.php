@@ -8,7 +8,7 @@
         <div class="row justify-content-center">
 
 
-            <div class="col-md-auto">
+            <div class="col-md-6">
                 <div class="card">
                     <div class="card-header">{{ $Modo == 'crear' ? 'Agregar Producto' : 'Modificar Producto' }}</div>
                     <div class="card-body">
@@ -39,7 +39,7 @@
                             <br/>
 
                             <label for="Categoria" class="control-label"> {{'Categoria'}}</label>
-                            <select name="Categoria" class="form-control" id="Categoria" value="{{ isset($Producto->Categoria)? $Producto->Categoria:''}}">
+                            <select name="Categoria" class="form-control col-md-auto" id="Categoria" value="{{ isset($Producto->Categoria)? $Producto->Categoria:''}}">
                                 <option value=""> -- Seleccione Opcion --</option>
                                 <option value="Telefono"> Telefono </option>
                                 <option value="Reparacion"> Reparacion </option>
@@ -48,7 +48,7 @@
 
                             <label for="modelos_id" class="control-label"> {{'Telefono'}}</label>
                             <a class="btn btn-success btn-sm   d-block mx-auto float-right"   data-toggle="modal" data-target="#Telefono">Crear Telefono</a>
-                            <select name="modelos_id" id="modelos_id" class="form-control" value="{{ isset($Modelo->modelos_id)? $Modelo->modelos_id:''}}">
+                            <select name="modelos_id" id="modelos_id" class="form-control col-md-auto " value="{{ isset($Modelo->modelos_id)? $Modelo->modelos_id:''}}">
                                 <option> -- Seleccione Opcion --</option>
                                 @foreach($Modelo as $Modelo )
 
@@ -59,7 +59,7 @@
 
                             <label for="tipo_reparacions_id" class="control-label"> {{'Tipo Reparacion'}}</label>
                             <a class="btn btn-success btn-sm   d-block mx-auto float-right"   data-toggle="modal" data-target="#Tipo_Reparacion">Crear Tipo de Reparacion</a>
-                            <select name="tipo_reparacions_id" id="tipo_reparacions_id" class="form-control" value="{{ isset($Tipo_Reparacion->tipo_reparacions_id)? $Tipo_Reparacion->tipo_reparacions_id:''}}">
+                            <select name="tipo_reparacions_id" id="tipo_reparacions_id" class="form-control col-md-auto" value="{{ isset($Tipo_Reparacion->tipo_reparacions_id)? $Tipo_Reparacion->tipo_reparacions_id:''}}">
                                 <option> -- Seleccione Opcion --</option>
                                 @foreach($Tipo_Reparacion as $Tipo_Reparacion )
 
@@ -68,16 +68,16 @@
                             </select>
                             <br/>
 
-                            <label for="Descripcion" class="control-label"> {{'Descripcion'}}</label>
-                            <textarea type="text" class="form-control {{$errors->has('Descripcion') ? 'is-invalid' :'' }}" name="Descripcion" id="Descripcion" value="{{ isset($Producto->Descripcion)? $Producto->Descripcion:''}}">
+                            <label for="Descripcion2" class="control-label"> {{'Descripcion'}}</label>
+                            <textarea type="text" class="form-control {{$errors->has('Descripcion2') ? 'is-invalid' :'' }}" name="Descripcion2" id="Descripcion2" value="{{ isset($Producto->Descripcion2)? $Producto->Descripcion2:''}}">
                             </textarea><br/>
 
-                            <label for="Descripcion" class="control-label"> {{'Cantidad'}}</label>
-                            <input type="text" class="form-control {{$errors->has('Cantidad') ? 'is-invalid' :'' }}" name="Cantidad" id="Cantidad" value="{{ isset($Producto->Cantidad)? $Producto->Cantidad:''}}">
+                            <label for="Stock" class="control-label"> {{'Stock'}}</label>
+                            <input type="text" class="form-control {{$errors->has('Stock') ? 'is-invalid' :'' }}" name="Stock" id="Stock" value="{{ isset($Producto->Stock)? $Producto->Stock:''}}">
                             <br/>
 
                             <label for="Precio" class="control-label"> {{'Precio'}}</label>
-                            <input type="text" class="form-control {{$errors->has('Precio') ? 'is-invalid' :'' }}" name="Precio" id="Precio" value="Q {{ isset($Producto->Precio)? $Producto->Precio:''}}">
+                            <input type="text" class="form-control {{$errors->has('Precio') ? 'is-invalid' :'' }}" name="Precio" id="Precio" value="{{ isset($Producto->Precio)? $Producto->Precio:''}}">
                             <br/>
 
 
@@ -246,6 +246,16 @@
 
     </form>
 
+
+    <script type="text/javascript">
+
+        $("#negocios_id").select2();
+        $("#modelos_id").select2();
+        $("#tipo_reparacions_id").select2();
+
+
+
+    </script>
 @endsection
 
 
