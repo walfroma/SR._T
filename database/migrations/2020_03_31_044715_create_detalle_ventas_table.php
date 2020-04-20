@@ -19,6 +19,7 @@ class CreateDetalleVentasTable extends Migration
             $table->integer('Cantidad')->nullable();
             $table->float('Precio')->nullable();
             $table->integer('productos_id')->unsigned();
+            $table->float('Subtotal')->nullable();
             $table->timestamps();
 
             $table->foreign('facturas_id')->references('id')->on('facturas')

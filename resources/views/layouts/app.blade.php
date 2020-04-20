@@ -24,9 +24,7 @@
 
 {!!Html::script('select2-4.0.3/vendor/jquery-2.1.0.js')!!}
 <!-- Include all compiled plugins (below), or include individual files as needed -->
-    {!!Html::style('css/bootstrap.min.css')!!}
-    {!!Html::style('css/navbar-fixed-top.css')!!}
-    {!!Html::script('js/bootstrap.min.js')!!}
+
     {!!Html::script('select2-4.0.3/dist/js/select2.js')!!}
     {!!Html::style('select2-4.0.3/dist/css/select2.css',['rel'=>"stylesheet"])!!}
 
