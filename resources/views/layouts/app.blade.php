@@ -79,9 +79,7 @@
                             @can('Navegar Modelo')
                                 <a href="{{url('Modelo')}}" class="nav-link">Modelo</a>
                             @endcan
-                            @can('Navegar Detalle_Venta')
-                                <a href="{{url('Detalle_Venta')}}" class="nav-link">Detalle Venta</a>
-                            @endcan
+
                             @can('Navegar Especificaciones')
                                 <a href="{{url('Especificaciones')}}" class="nav-link">Especificaciones</a>
                             @endcan
@@ -151,7 +149,6 @@
 
     <script src="{{asset('select2//dist/js/select2.js')}}"></script>
 
-    <script src="{{asset('js/app.js')}}"></script>
     <script src="{{asset('jquery/dist/jquery.js')}}"></script>
 
 

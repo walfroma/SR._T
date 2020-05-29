@@ -25,35 +25,33 @@ class ReservacionController extends Controller
         $perPage = 20;
 
         if (!empty($keyword)) {
-            $Reservacion = Reservacion::where('Fecha_Reserva', 'LIKE', "%$keyword%")
-                ->orWhere('Fecha_Entrega', 'LIKE', "%$keyword%")->orWhere('id', 'LIKE', "%$keyword%")
+
+            $Reservacion = DB::table('reservacions')
+                ->join('modelos', 'modelos.id', '=', 'reservacions.productos_id')
+                ->join('tipo_reparacions', 'tipo_reparacions.id', '=', 'reservacions.tipo_reparacions_id')
+                ->orWhere('Modelo', 'LIKE', "%$keyword%")
+                ->orWhere('Fecha_Entrega', 'LIKE', "%$keyword%")->orWhere('Fecha_Reserva', 'LIKE', "%$keyword%")
                 ->orWhere('Estado', 'LIKE', "%$keyword%")->orWhere('Cantidad', 'LIKE', "%$keyword%")
                 ->orWhere('productos_id', 'LIKE', "%$keyword%")->orWhere('tipo_reparacions_id', 'LIKE', "%$keyword%")
                 ->orWhere('Tipo_Reservacion', 'LIKE', "%$keyword%")
+                ->select('reservacions.*', 'modelos.Modelo', 'tipo_reparacions.Descripcion')
                 ->latest()->paginate($perPage);
-        } else {
-            $Reservacion = Reservacion::latest()->paginate($perPage);
 
+        } else {
+           // $Reservacion = Reservacion::latest()->paginate($perPage);
+            $Reservacion = DB::table('reservacions')
+                ->join('modelos', 'modelos.id', '=', 'reservacions.productos_id')
+                ->join('tipo_reparacions', 'tipo_reparacions.id', '=', 'reservacions.tipo_reparacions_id')
+                ->select('reservacions.*',  'modelos.Modelo', 'tipo_reparacions.Descripcion')
+                ->paginate($perPage);
 
         }
-        $Producto = DB::table('productos')
-            ->join('reservacions', 'productos.id' , '=' , 'reservacions.productos_id')
-            ->select('productos.modelos_id')
-            ->get();
-
-
-
-        $Tipo_Reparacion = DB::table('tipo_reparacions')
-            ->join('reservacions', 'tipo_reparacions.id' , '=' , 'reservacions.tipo_reparacions_id')
-            ->select('tipo_reparacions.Descripcion')
-            ->get();
 
 
 
 
 
-
-        return view('Reservacion.index', compact('Reservacion', 'Tipo_Reparacion',  'Producto'));
+        return view('Reservacion.index', compact('Reservacion'));
     }
 
     /**
@@ -65,7 +63,13 @@ class ReservacionController extends Controller
     {
         //
         $Reservacion = Reservacion::all();
-        $Producto = Producto::all();
+       // $Producto = Producto::all();
+        $Producto = DB::table('productos as p', 'modelos ')
+            ->join('modelos', 'modelos.id', '=', 'p.modelos_id' )
+            ->join('marcas as m', 'm.id', '=', 'modelos.marcas_id')
+            ->join('tipo_reparacions as t', 't.id', '=', 'p.tipo_reparacions_id' )
+            ->select(DB::raw('CONCAT (p.id, " - " , p.modelos_id) as productos'), 'p.id', 'm.Marca', 'modelos.Modelo')
+            ->get();
         $Tipo_Reparacion = TipoReparacion::all();
 
         $now = Carbon::now();

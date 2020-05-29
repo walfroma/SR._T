@@ -46,9 +46,7 @@ Route::group(['middleware' => ['role:master|cliente']], function (){
 Route::group(['middleware' => ['role:master|cliente']], function (){
     Route::resource('Modelo', 'ModeloController')/*->middleware('auth')*/;
 });
-Route::group(['middleware' => ['role:master|cliente']], function (){
-    Route::resource('Detalle_Venta', 'DetalleVentaController')/*->middleware('auth')*/;
-});
+
 Route::group(['middleware' => ['role:master|cliente']], function (){
     Route::resource('Especificaciones', 'EspecificacionesController')/*->middleware('auth')*/;
 });

@@ -36,9 +36,6 @@
                     <a href=" {{ url('Especificaciones') }}">Especificaciones del Telefono</a>
                     <br/>
                     <br/>
-                    <a href=" {{ url('DetalleVenta') }}">Detalle Venta</a>
-                    <br/>
-                    <br/>
                     <a href=" {{ url('Factura') }}">Factura</a>
                     <br/>
                     <br/>
